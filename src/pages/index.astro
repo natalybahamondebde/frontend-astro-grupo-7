@@ -1,6 +1,5 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import HeaderComponent from "../components/headerComponent.astro";
 import BannerComponent from "../components/bannerComponent.astro";
 import TitleComponent from "../components/titleComponent.astro";
 import {fetchFromAPI, STRAPI_BASE_URL, STRAPI_URL} from "../lib/conection";
@@ -9,7 +8,6 @@ const data = await fetchFromAPI('home');
 
 <Layout>
     <BannerComponent>
-        {data.title}
+        <TitleComponent />
     </BannerComponent>
-    <TitleComponent />
 </Layout>
