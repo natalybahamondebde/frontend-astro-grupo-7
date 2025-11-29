@@ -1,4 +1,4 @@
-const strapiUrl = import.meta.env.STRAPI_API_URL || 'https://dedicated-actor-c120166421.strapiapp.com/api';
+const strapiUrl = import.meta.env.STRAPI_API_URL || 'https://backend-restaurant-tz76.onrender.com/api';
 
 export const STRAPI_BASE_URL = strapiUrl.replace('/api', '');
 
