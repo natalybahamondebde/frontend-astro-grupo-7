@@ -1,5 +1,15 @@
 ---
-
+import LineComponent from "./lineComponent.astro";
 ---
 
-<div class="fixed bg-black w-full h-20"></div>
+<div class="fixed flex flex-row bg-black w-full h-20">
+    <ul class="flex flex-row w-full h-full items-center text-white gap-7 text-center justify-center">
+        <li class="group cursor-pointer">INICIO<LineComponent /></li>
+        <li class="group cursor-pointer">MENU<LineComponent /></li>
+        <li class="group cursor-pointer">SERVICIOS<LineComponent /></li>
+        <li class="group cursor-pointer">NOSOTROS<LineComponent /></li>
+    </ul>
+    <div class="text-white items-center flex flex-row text-[12px]">
+        LLAMA +56956085469
+    </div>
+</div>
