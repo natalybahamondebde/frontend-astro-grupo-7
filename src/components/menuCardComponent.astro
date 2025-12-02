@@ -1,0 +1,19 @@
+---
+interface Props {
+    category: string;
+    title: string;
+    description: string;
+    price: string;
+}
+const { category = "default_cat", title = "default_title", description = "default_desc", price = "default_price" } = Astro.props;
+---
+
+<div class="bg-white grid grid-cols-[30%_70%] p-2">
+    <div class="bg-gray-500 h-35 aspect-square"></div>
+    <div class="flex flex-col justify-center">
+        <p class="text-orange-400">{category}</p>
+        <p class="font-bold">{title}</p>
+        <p>{description}</p>
+        <p class="font-bold text-button">{price}</p>
+    </div>
+</div>

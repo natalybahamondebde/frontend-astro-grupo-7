@@ -1,13 +1,24 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import BannerComponent from "../components/bannerComponent.astro";
-import TitleComponent from "../components/titleComponent.astro";
-import {fetchFromAPI, STRAPI_BASE_URL, STRAPI_URL} from "../lib/conection";
-const data = await fetchFromAPI('home');
+import ReviewsComponent from "../components/reviewsComponent.astro";
+import BlogsComponent from "../components/blogsComponent.astro";
+import ServicesComponent from "../components/servicesComponent.astro";
+import MenuMainComponent from "../components/menuMainComponent.astro";
+import AboutComponent from "../components/aboutComponent.astro";
+import HeroComponent from "../components/heroComponent.astro";
 ---
 
 <Layout>
-    <BannerComponent>
-        <TitleComponent />
-    </BannerComponent>
+    <!-- SECTION 0: B A N N E R -->
+    <HeroComponent />
+    <!-- SECTION 1: A B O U T  U S -->
+    <AboutComponent />
+    <!-- SECTION 2 : M E N U -->
+    <MenuMainComponent />
+    <!-- SECTION 3 : S E R V I C E S -->
+    <ServicesComponent />
+    <!-- SECTION 4 : R E V I E W S -->
+    <ReviewsComponent />
+    <!-- SECTION 5 : B L O G S -->
+    <BlogsComponent />
 </Layout>

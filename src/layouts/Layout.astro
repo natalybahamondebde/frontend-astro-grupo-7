@@ -1,6 +1,7 @@
 ---
 import '/styles/global.css';
 import HeaderComponent from "../components/headerComponent.astro";
+import FooterComponent from "../components/footerComponent.astro";
 ---
 <!doctype html>
 <html lang="en">
@@ -11,10 +12,11 @@ import HeaderComponent from "../components/headerComponent.astro";
 		<meta name="generator" content={Astro.generator} />
 		<title>Restaurant</title>
 	</head>
-	<body>
+	<body class="bg-primary">
 	<HeaderComponent />
 	<main>
 		<slot />
 	</main>
+	<FooterComponent />
 	</body>
 </html>

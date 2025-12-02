@@ -1,0 +1,160 @@
+---
+import SubtitleComponent from "../components/subtitleComponent.astro";
+import TitleComponent from "../components/titleComponent.astro";
+import BannerComponent from "../components/bannerComponent.astro";
+import Layout from "../layouts/Layout.astro";
+import PrimaryButtonComponent from "../components/primaryButtonComponent.astro";
+import SquareImageComponent from "../components/squareImageComponent.astro";
+import SmallTitleComponent from "../components/smallTitleComponent.astro";
+---
+
+<Layout>
+    <!-- SECTION 0: B A N N E R -->
+    <BannerComponent>
+        <div class="w-[50%] py-5">
+            <SubtitleComponent text="Our Story"
+                               color="primary"
+                               align="center"/>
+        </div>
+        <div class="w-[70%] mb-20">
+            <TitleComponent text="World of Culinary Oasis"
+                            color="primary"
+                            size="big"
+                            align="center" />
+        </div>
+        <div class="flex gap-5 flex-row">
+            <PrimaryButtonComponent text="READ OUR STORY"
+                                    color="secondary" />
+        </div>
+    </BannerComponent>
+    <!-- SECTION 1: S Q U A R E S-->
+    <div class="grid grid-cols-3 h-50 gap-15 mx-40 relative bottom-10">
+        <div class="bg-white justify-center items-center flex flex-col">
+            <TitleComponent text="24k+" color="secondary" size="big" />
+            <SubtitleComponent text="Satisfied Customers" color="secondary" />
+        </div>
+        <div class="bg-white justify-center items-center flex flex-col">
+            <TitleComponent text="24k+" color="secondary" size="big" />
+            <SubtitleComponent text="Satisfied Customers" color="secondary" />
+        </div>
+        <div class="bg-white justify-center items-center flex flex-col">
+            <TitleComponent text="24k+" color="secondary" size="big" />
+            <SubtitleComponent text="Satisfied Customers" color="secondary" />
+        </div>
+    </div>
+    <!-- SECTION 2: H I S T O R Y-->
+    <div class="grid grid-cols-[25%_75%] h-120 mx-40 my-10">
+        <div>
+            <SquareImageComponent />
+        </div>
+        <div class="mx-10 grid grid-row">
+            <SmallTitleComponent text="HISTORY" />
+            <TitleComponent text="The Tale of The Launch of Our First Eatery"
+                            color="secondary"
+                            size="big" />
+            <SubtitleComponent text="Our first restaurant's history is based on passion, commitment, and common goals. It all began with a group of food enthusiasts who thought that extraordinary meals had the ability to transform people. We think that our restaurant brings flavor to life, and we treat our patrons more like honored guests than like business partners."
+                               color="secondary"
+                               align="left" />
+            <PrimaryButtonComponent text="READ OUR STORY"
+                                    color="primary" />
+        </div>
+    </div>
+
+    <div class="grid grid-cols-[55%_45%] h-170 mx-40 my-10">
+        <div class="mx-10 grid grid-row">
+            <SmallTitleComponent text="OUR SERVICE" />
+            <TitleComponent text="Provide Unique Service For Your Special Day"
+                            color="secondary"
+                            size="big" />
+            <SubtitleComponent text="More than simply a restaurant, Dinely is a culinary haven for gourmets seeking out exceptional eating experiences. At Dinely, we think that a meal should be a memorable experience, and our skilled chefs are dedicated to producing imaginative and attractive cuisine."
+                               color="secondary"
+                               align="left" />
+            <div class="grid grid-cols-3 h-50">
+                <div class="justify-center items-center flex flex-col">
+                    <TitleComponent text="24k+" color="secondary" size="small" />
+                    <SubtitleComponent text="Satisfied Customers" color="secondary" />
+                </div>
+                <div class="justify-center items-center flex flex-col">
+                    <TitleComponent text="24k+" color="secondary" size="small" />
+                    <SubtitleComponent text="Satisfied Customers" color="secondary" />
+                </div>
+                <div class="justify-center items-center flex flex-col">
+                    <TitleComponent text="24k+" color="secondary" size="small" />
+                    <SubtitleComponent text="Satisfied Customers" color="secondary" />
+                </div>
+            </div>
+            <PrimaryButtonComponent text="RESERVATION"
+                                    color="primary" />
+        </div>
+        <div>
+            <SquareImageComponent />
+        </div>
+    </div>
+    <div class="flex flex-col items-center">
+        <SmallTitleComponent text="TEAM" />
+        <TitleComponent text="Meet Our Chef"
+                        color="secondary"
+                        size="big"
+                        align="center" />
+        <SubtitleComponent text="Our chef brings a wealth of culinary experience to our restaurant."
+                           color="secondary"
+                           align="center" />
+    </div>
+    <div class="bg-white grid grid-cols-[40%_60%] h-120 mx-40 my-10">
+        <div>
+            <SquareImageComponent />
+        </div>
+        <div class="mx-10 justify-center flex flex-col">
+            <TitleComponent text="Sturart Macgil"
+                            color="secondary"
+                            size="big" />
+            <TitleComponent text="Head Chef"
+                            color="secondary"
+                            size="small" />
+            <SubtitleComponent text="Sturart Macgil, our head chef has a plethora of expertise and a love for cooking. He has a natural aptitude for crafting flavors and presentations that astonish the senses. He has received training in the best culinary traditions."
+                               color="secondary"
+                               align="left" />
+            <PrimaryButtonComponent text="READ OUR STORY"
+                                    color="primary" />
+        </div>
+    </div>
+    <div class="grid grid-cols-2 mx-40 gap-2">
+        <div class="bg-white grid grid-cols-[40%_60%] h-100 my-10">
+            <div>
+                <SquareImageComponent />
+            </div>
+            <div class="mx-10 justify-center flex flex-col">
+                <TitleComponent text="Sturart Macgil"
+                                color="secondary"
+                                size="small" />
+                <SubtitleComponent text="Head Chef"
+                                   color="secondary"/>
+                <SubtitleComponent text="Sophie Moore, our head waiter, makes sure your evening is the best it can be. Their vast culinary knowledge, precise timing, and gracious manner."
+                                   color="secondary"
+                                   align="left" />
+                <PrimaryButtonComponent text="READ OUR STORY"
+                                        color="primary" />
+            </div>
+        </div>
+        <div class="bg-white grid grid-cols-[40%_60%] h-100 my-10">
+            <div>
+                <SquareImageComponent />
+            </div>
+            <div class="mx-10 justify-center flex flex-col">
+                <TitleComponent text="Sturart Macgil"
+                                color="secondary"
+                                size="small" />
+                <SubtitleComponent text="Head Chef"
+                                color="secondary"/>
+                <SubtitleComponent text="Sturart Macgil, our head chef has a plethora of expertise and a love for cooking. He has a natural aptitude for crafting flavors and presentations that astonish the senses. He has received training in the best culinary traditions."
+                                   color="secondary"
+                                   align="left" />
+                <PrimaryButtonComponent text="READ OUR STORY"
+                                        color="primary" />
+            </div>
+        </div>
+    </div>
+    <div class="flex items-center flex-col my-5 pb-30">
+        <PrimaryButtonComponent text="MEET OUR TEAM" color="primary" />
+    </div>
+</Layout>
