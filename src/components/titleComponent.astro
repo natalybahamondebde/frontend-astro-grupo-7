@@ -1,7 +1,10 @@
 ---
-
+const { text = "Default", color = "secondary", size = "small", align = "left" } = Astro.props;
 ---
 
-<h1 class="text-white text-center text-4xl">
-    Enjoy Every Bite and Tasting Delicious Food
+<h1 class={`font-body ${color === "primary" ? "text-white" :
+    color === "secondary" ? "text-black" : "text-black"} ${size === "big" ? "text-6xl" :
+    size === "small" ? "text-3xl" : "text-2xl"} ${align === "center" ? "text-center" :
+    align === "left" ? "text-left" : "text-left"}`}>
+    {text}
 </h1>

@@ -1,0 +1,24 @@
+---
+import SquareImageComponent from "./squareImageComponent.astro";
+import SubtitleComponent from "./subtitleComponent.astro";
+
+interface Props {
+    image: string;
+    category: string;
+    title: string;
+    description: string;
+}
+
+const { image= "default.jpg", category, title, description } = Astro.props;
+---
+
+<div class="p-5 h-120">
+    <SquareImageComponent image={image} />
+    <div class="m-5">
+        <div class="bg-secondary w-20 py-1 text-center text-[12px] font-bold font-body">
+            <p class="text-button">{category}</p>
+        </div>
+        <SubtitleComponent bold="bold" text={title} />
+        <SubtitleComponent color="text-gris" text={description} />
+    </div>
+</div>

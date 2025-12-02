@@ -9,6 +9,8 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@fontsource-variable/lora": "^5.2.8",
+    "@fontsource/new-tegomin": "^5.2.7",
     "@tailwindcss/vite": "^4.1.17",
     "astro": "^5.16.2",
     "tailwindcss": "^4.1.17"

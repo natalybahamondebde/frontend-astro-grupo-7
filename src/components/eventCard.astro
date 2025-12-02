@@ -1,0 +1,23 @@
+---
+import TitleComponent from "./titleComponent.astro";
+import PrimaryButtonComponent from "./primaryButtonComponent.astro";
+
+const { title, features = [] } = Astro.props;
+---
+
+<div class="grid grid-rows-[40%_45%_14%] gap-4 bg-gray-500 h-150 rounded-xl p-10 items-end">
+    <TitleComponent text={title} color="primary" />
+
+    <div class="grid grid-cols-3 gap-2">
+        {features.map((item) => (
+                <div class="aspect-square grid grid-rows-2 py-7 text-center items-center text-white">
+                    <div>{item.icon}</div>
+                    <div>{item.label}</div>
+                </div>
+        ))}
+    </div>
+
+    <div class="flex justify-center">
+        <PrimaryButtonComponent text="RESERVATION" color="primary" />
+    </div>
+</div>

@@ -1,0 +1,32 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import {fetchFromAPI} from "../../lib/conection";
+
+interface TarjetasSingle {
+    documentId: string;
+    title_tarjeta: string;
+    info_tarjeta: string;
+}
+
+export async function getStaticPaths(){
+    const tarjetas = await fetchFromAPI("tarjetas");
+
+    return tarjetas.map ((tarjeta: TarjetasSingle) => ({
+        params: {
+            slug: tarjeta.documentId
+        },
+        props: {
+            tarjeta: tarjeta
+        }
+    }))
+}
+
+const { tarjeta }: {tarjeta: TarjetasSingle} = Astro.props;
+---
+<Layout>
+    <div class="h-20"></div>
+    <div class="mx-20 my-20 h-100">
+        <h1 class="font-bold">{tarjeta.title_tarjeta}</h1>
+        <p>{tarjeta.info_tarjeta}</p>
+    </div>
+</Layout>

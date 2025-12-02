@@ -1,0 +1,52 @@
+---
+
+import SubtitleComponent from "./subtitleComponent.astro";
+import TitleComponent from "./titleComponent.astro";
+import SmallTitleComponent from "./smallTitleComponent.astro";
+import {fetchFromAPI} from "../lib/conection";
+import BlogsSmallComponent from "./blogsSmallComponent.astro";
+import BlogsBigComponent from "./blogsBigComponent.astro";
+
+interface TarjetasInterface {
+    documentId: string;
+    title: string;
+    smalTitle: string;
+    info: string;
+    name: string;
+    url: string;
+}
+
+const data = await fetchFromAPI('home');
+const blogs: TarjetasInterface[] = (await fetchFromAPI('blogs')) || [];
+
+const bigData = blogs[0];
+const smallData = blogs.slice(1, 4);
+---
+
+<div class="items-center flex flex-col">
+    <SmallTitleComponent text={data.smallTitle_blog} />
+    <TitleComponent text={data.title_blog} color="secondary" align="center" size="big" />
+    <SubtitleComponent text={data.info_blog}
+                       color="text-gris"
+                       align="center" />
+</div>
+<div class="grid grid-cols-[35%_65%] mx-20 my-10">
+<BlogsBigComponent
+        date={bigData.smalTitle}
+        title={bigData.title}
+        description={bigData.info}
+        button={bigData.name}
+        link=`/blogs/${bigData.documentId}`
+/>
+</div>
+<div class="grid grid-cols-3 h-150 mt-10 mb-20 mx-20 gap-10">
+    {smallData.map((item) => (
+            <BlogsSmallComponent
+                    date={item.smalTitle}
+                    title={item.title}
+                    description={item.info}
+                    button={item.name}
+                    link=`/blogs/${item.documentId}`
+            />
+    ))}
+</div>

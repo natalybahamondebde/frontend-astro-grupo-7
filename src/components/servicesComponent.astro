@@ -1,0 +1,67 @@
+---
+
+import EventCard from "./eventCard.astro";
+import SubtitleComponent from "./subtitleComponent.astro";
+import TitleComponent from "./titleComponent.astro";
+import SmallTitleComponent from "./smallTitleComponent.astro";
+const servicio1 = [
+    { icon: "🎉", label: "Guest Seating" },
+    { icon: "🎉", label: "Guest Seating" },
+    { icon: "🎉", label: "Guest Seating" },
+    { icon: "🎉", label: "Guest Seating" },
+    { icon: "🎉", label: "Guest Seating" },
+    { icon: "🎉", label: "Guest Seating" },
+];
+
+const servicio2 = [
+    { icon: "🎉", label: "Guest Seating" },
+    { icon: "🎉", label: "Guest Seating" },
+    { icon: "🎉", label: "Guest Seating" },
+    { icon: "🎉", label: "Guest Seating" },
+    { icon: "🎉", label: "Guest Seating" },
+    { icon: "🎉", label: "Guest Seating" },
+];
+
+const servicio3 = [
+    { icon: "🎉", label: "Guest Seating" },
+    { icon: "🎉", label: "Guest Seating" },
+    { icon: "🎉", label: "Guest Seating" },
+    { icon: "🎉", label: "Guest Seating" },
+    { icon: "🎉", label: "Guest Seating" },
+    { icon: "🎉", label: "Guest Seating" },
+];
+
+import {fetchFromAPI} from "../lib/conection";
+const data = await fetchFromAPI('home');
+---
+
+<div class="grid grid-rows-[30%_70%] mx-20 my-20">
+    <div class="items-center flex flex-col">
+        <SmallTitleComponent text={data.smallTitle_servicio} />
+        <TitleComponent text={data.title_servicio}
+                        color="secondary"
+                        align="center"
+                        size="big" />
+        <div class="mx-40">
+            <SubtitleComponent text={data.info_servicio}
+                               color="text-gris"
+                               align="center" />
+        </div>
+    </div>
+    <div class="grid lg:grid-cols-3 md:grid-cols-1 gap-6 p-6">
+        <EventCard
+                title="Other Event"
+                features={servicio1}
+        />
+
+        <EventCard
+                title="Wedding"
+                features={servicio2}
+        />
+
+        <EventCard
+                title="Birthday Party"
+                features={servicio3}
+        />
+    </div>
+</div>

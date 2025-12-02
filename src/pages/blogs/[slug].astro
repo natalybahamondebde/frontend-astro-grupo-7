@@ -1,0 +1,32 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import {fetchFromAPI} from "../../lib/conection";
+
+interface BlogsSingle {
+    documentId: string;
+    title: string;
+    info: string;
+}
+
+export async function getStaticPaths(){
+    const blogs = await fetchFromAPI("blogs");
+
+    return blogs.map ((blog: BlogsSingle) => ({
+        params: {
+            slug: blog.documentId
+        },
+        props: {
+            blog: blog
+        }
+    }))
+}
+
+const { blog }: {blog: BlogsSingle} = Astro.props;
+---
+<Layout>
+    <div class="h-20"></div>
+    <div class="mx-20 my-20 h-100">
+        <h1 class="font-bold">{blog.title}</h1>
+        <p>{blog.info}</p>
+    </div>
+</Layout>

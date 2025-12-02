@@ -6,7 +6,7 @@ export const STRAPI_URL = strapiUrl;
 
 export const fetchFromAPI = async (slag: string) => {
     try {
-        const response = await fetch(`${STRAPI_URL}/${slag}/?populate=*`);
+        const response = await fetch(`${STRAPI_URL}/${slag}?populate=*`);
         const json = await response.json();
         // Si tiene results, es una lista, si no, es un objeto individual
         return json.data;

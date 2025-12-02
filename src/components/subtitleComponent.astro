@@ -1,0 +1,20 @@
+---
+const { text, color, align, size, bold } = Astro.props;
+---
+
+<h1 class={`font-body 
+    ${color === "primary" ? "text-white" :
+    color === "secondary" ? "text-black" : 
+    color === "text-gris" ? "text-gris" : 
+    color === "text-button" ? "text-button" :
+    "text-black"} 
+    ${size === "big" ? "text-[18px]" :
+    size === "small" ? "text-[15px]" : 
+    "text-[18px]"} 
+    ${align === "center" ? "text-center" :
+    align === "right" ? "text-right" :
+    align === "left"} 
+    ${bold === "bold" ? "font-bold" : 
+    "font-normal"}`}>
+    {text}
+</h1>
