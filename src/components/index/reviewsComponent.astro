@@ -1,12 +1,12 @@
 ---
 
-import SubtitleComponent from "./subtitleComponent.astro";
-import TitleComponent from "./titleComponent.astro";
-import {fetchFromAPI} from "../lib/conection";
+import SubtitleComponent from "../misc/subtitleComponent.astro";
+import TitleComponent from "../misc/titleComponent.astro";
+import {fetchFromAPI} from "../../lib/conection";
 const data = await fetchFromAPI('home');
 ---
 
-<div class="items-center justify-center flex flex-col mx-20 mt-10 h-150">
+<div class="items-center justify-center gap-y-10 flex flex-col mt-10 h-150">
     <TitleComponent text={data.title_resenas}
                     align="center"
                     color="secondary"

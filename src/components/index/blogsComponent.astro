@@ -1,9 +1,9 @@
 ---
 
-import SubtitleComponent from "./subtitleComponent.astro";
-import TitleComponent from "./titleComponent.astro";
-import SmallTitleComponent from "./smallTitleComponent.astro";
-import {fetchFromAPI} from "../lib/conection";
+import SubtitleComponent from "../misc/subtitleComponent.astro";
+import TitleComponent from "../misc/titleComponent.astro";
+import SmallTitleComponent from "../misc/smallTitleComponent.astro";
+import {fetchFromAPI} from "../../lib/conection";
 import BlogsSmallComponent from "./blogsSmallComponent.astro";
 import BlogsBigComponent from "./blogsBigComponent.astro";
 
@@ -30,7 +30,7 @@ const smallData = blogs.slice(1, 4);
                        color="text-gris"
                        align="center" />
 </div>
-<div class="grid grid-cols-[35%_65%] mx-20 my-10">
+<div class="grid grid-cols-[35%_65%] my-10">
 <BlogsBigComponent
         date={bigData.smalTitle}
         title={bigData.title}
@@ -39,7 +39,7 @@ const smallData = blogs.slice(1, 4);
         link=`/blogs/${bigData.documentId}`
 />
 </div>
-<div class="grid grid-cols-3 h-150 mt-10 mb-20 mx-20 gap-10">
+<div class="grid grid-cols-3 mt-10 mb-20 gap-10">
     {smallData.map((item) => (
             <BlogsSmallComponent
                     date={item.smalTitle}

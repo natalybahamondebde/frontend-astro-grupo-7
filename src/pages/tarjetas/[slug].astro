@@ -1,6 +1,10 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import {fetchFromAPI} from "../../lib/conection";
+import TitleComponent from "../../components/misc/titleComponent.astro";
+import SubtitleComponent from "../../components/misc/subtitleComponent.astro";
+import SmallTitleComponent from "../../components/misc/smallTitleComponent.astro";
+import SquareImageComponent from "../../components/misc/squareImageComponent.astro";
 
 interface TarjetasSingle {
     documentId: string;
@@ -25,8 +29,15 @@ const { tarjeta }: {tarjeta: TarjetasSingle} = Astro.props;
 ---
 <Layout>
     <div class="h-20"></div>
-    <div class="mx-20 my-20 h-100">
-        <h1 class="font-bold">{tarjeta.title_tarjeta}</h1>
-        <p>{tarjeta.info_tarjeta}</p>
+    <div class="mx-40 grid grid-cols-[50%_50%]">
+        <div class="h-90 w-90">
+            <SquareImageComponent />
+        </div>
+        <div>
+            <SmallTitleComponent text={tarjeta.smalTitle_tarjeta} />
+            <TitleComponent text={tarjeta.title_tarjeta} />
+            <SubtitleComponent size="small" color="text-gris" text={tarjeta.info_tarjeta} />
+            <SubtitleComponent text={tarjeta.precio} />
+        </div>
     </div>
 </Layout>

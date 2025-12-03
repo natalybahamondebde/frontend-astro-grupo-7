@@ -1,23 +1,22 @@
 ---
 
-import SquareImageComponent from "../components/squareImageComponent.astro";
-import SubtitleComponent from "../components/subtitleComponent.astro";
-import TitleComponent from "../components/titleComponent.astro";
-import PrimaryButtonComponent from "../components/primaryButtonComponent.astro";
+import SquareImageComponent from "../components/misc/squareImageComponent.astro";
+import SubtitleComponent from "../components/misc/subtitleComponent.astro";
+import TitleComponent from "../components/misc/titleComponent.astro";
+import PrimaryButtonComponent from "../components/misc/primaryButtonComponent.astro";
 import Layout from "../layouts/Layout.astro";
-import SmallTitleComponent from "../components/smallTitleComponent.astro";
+import SmallTitleComponent from "../components/misc/smallTitleComponent.astro";
 import MenuCardComponent from "../components/menuCardComponent.astro";
-import {fetchFromAPI} from "../lib/conection";
+import {fetchFromAPI, STRAPI_BASE_URL} from "../lib/conection";
 
 interface TarjetasInterface {
     documentId: string;
-    smalTitle: string;
-    title: string;
-    info: string;
-    price: string;
+    smalTitle_tarjeta: string;
+    title_tarjeta: string;
+    info_tarjeta: string;
+    precio: string;
 }
 
-const data = await fetchFromAPI('home');
 const tarjetas: TarjetasInterface[] = (await fetchFromAPI('tarjetas')) || [];
 ---
 

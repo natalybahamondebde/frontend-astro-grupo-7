@@ -1,10 +1,10 @@
 ---
-import TitleComponent from "./titleComponent.astro";
-import SmallTitleComponent from "./smallTitleComponent.astro";
-import PrimaryButtonComponent from "./primaryButtonComponent.astro";
-import MenuSmallComponent from "./menuSmallComponent.astro";
-import {fetchFromAPI} from "../lib/conection";
-import MenuBigComponent from "./menuBigComponent.astro";
+import TitleComponent from "../misc/titleComponent.astro";
+import SmallTitleComponent from "../misc/smallTitleComponent.astro";
+import PrimaryButtonComponent from "../misc/primaryButtonComponent.astro";
+import MenuSmallComponent from "../menuSmallComponent.astro";
+import {fetchFromAPI} from "../../lib/conection";
+import MenuBigComponent from "../menuBigComponent.astro";
 const data = await fetchFromAPI('home');
 
 interface TarjetasInterface {
@@ -20,7 +20,7 @@ const bigData = tarjetas[0];
 const smallData = tarjetas.slice(1, 4);
 ---
 
-<div class="mx-40 mt-10 h-200">
+<div class="mt-10 h-200">
     <div class="flex flex-col items-center">
         <SmallTitleComponent text={data.smallTitle_especial} />
         <TitleComponent text={data.title_especial}

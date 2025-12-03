@@ -1,17 +1,17 @@
 ---
 
-import SquareImageComponent from "./squareImageComponent.astro";
-import SubtitleComponent from "./subtitleComponent.astro";
-import TitleComponent from "./titleComponent.astro";
-import SmallTitleComponent from "./smallTitleComponent.astro";
-import PrimaryButtonComponent from "./primaryButtonComponent.astro";
-import {fetchFromAPI} from "../lib/conection";
+import SquareImageComponent from "../misc/squareImageComponent.astro";
+import SubtitleComponent from "../misc/subtitleComponent.astro";
+import TitleComponent from "../misc/titleComponent.astro";
+import SmallTitleComponent from "../misc/smallTitleComponent.astro";
+import PrimaryButtonComponent from "../misc/primaryButtonComponent.astro";
+import {fetchFromAPI, STRAPI_BASE_URL} from "../../lib/conection";
 const data = await fetchFromAPI('home');
 ---
 
-<div class="grid grid-cols-[30%_70%] mx-40 my-20">
+<div class="grid grid-cols-[30%_70%] my-20">
     <div class="aspect-square">
-        <SquareImageComponent image="https://cdn.prod.website-files.com/661f3032b0ec9bb7aaa54142/665d311b7c100e7f29d6f6b7_Photo%202.webp" />
+        <SquareImageComponent image={`${STRAPI_BASE_URL}${data.image2.url}`} />
     </div>
     <div class="mx-10 justify-center flex flex-col gap-y-5">
         <SmallTitleComponent text={data.smallTitle_nosotros} />
