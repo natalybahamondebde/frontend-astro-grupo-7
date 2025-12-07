@@ -1,0 +1,13 @@
+---
+import {fetchFromAPI, STRAPI_BASE_URL} from "../../lib/conection";
+import BannerComponent from "../misc/bannerComponent.astro";
+import TitleComponent from "../misc/titleComponent.astro";
+const data = await fetchFromAPI('about');
+---
+<BannerComponent image={`${STRAPI_BASE_URL}${data.banner4.url}`}>
+    <div class="mx-10 grid grid-row gap-y-5">
+        <TitleComponent text={data.title4}
+                        color="primary"
+                        size="big" align="center" />
+    </div>
+</BannerComponent>

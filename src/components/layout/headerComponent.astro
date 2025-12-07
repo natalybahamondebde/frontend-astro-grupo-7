@@ -7,7 +7,7 @@ const data = await fetchFromAPI('navards');
 ---
 
 <div class="z-50 fixed grid grid-cols-[15%_70%_15%] px-5 bg-brand-white w-full h-20">
-    <div class="flex items-center justify-start"><LogoComponent /></div>
+    <div class="flex items-center justify-start lg:visible invisible"><LogoComponent /></div>
     <ul class="flex flex-row w-full h-full items-center text-black gap-7 font-body text-center justify-center">
         {data.map((item) => (
         <li class="group cursor-pointer"><a href={item.url}>{item.name}<LineComponent /></a></li>

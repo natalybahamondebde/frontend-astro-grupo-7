@@ -3,8 +3,8 @@
 import SubtitleComponent from "../misc/subtitleComponent.astro";
 import TitleComponent from "../misc/titleComponent.astro";
 import {fetchFromAPI, STRAPI_BASE_URL} from "../../lib/conection";
-import MenuSmallComponent from "./menuSmallComponent.astro";
-import ReviewsSmallComponent from "./reviewsSmallComponent.astro";
+import MenuSmallComponent from "../cards/menuSmallComponent.astro";
+import ReviewsSmallComponent from "../cards/reviewsSmallComponent.astro";
 import SmallTitleComponent from "../misc/smallTitleComponent.astro";
 const data = await fetchFromAPI('home');
 const review = await fetchFromAPI('resena-personas');

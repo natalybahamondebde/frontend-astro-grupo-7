@@ -1,0 +1,15 @@
+---
+import {fetchFromAPI, STRAPI_BASE_URL} from "../../lib/conection";
+import BannerComponent from "../misc/bannerComponent.astro";
+import TitleComponent from "../misc/titleComponent.astro";
+import SubTitleComponent from "../misc/subtitleComponent.astro";
+const data = await fetchFromAPI('equipo');
+---
+<BannerComponent image={`${STRAPI_BASE_URL}${data.banner.url}`}>
+    <div class="flex flex-col gap-y-5 mx-10 lg:mx-50">
+        <TitleComponent text={data.title} color="primary" align="center" size="big"/>
+        <SubTitleComponent text={data.info}
+                           color="primary"
+                           align="center"/>
+    </div>
+</BannerComponent>

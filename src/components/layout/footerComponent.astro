@@ -2,33 +2,37 @@
 
 import LogoComponent from "../misc/logoComponent.astro";
 import {fetchFromAPI} from "../../lib/conection";
-import LineComponent from "../misc/lineComponent.astro";
+import SubtitleComponent from "../misc/subtitleComponent.astro";
 const data = await fetchFromAPI('home');
 const links = await fetchFromAPI('navards');
 const sitios = await fetchFromAPI('sitios');
 ---
 
-<div class="bg-black h-80 grid grid-cols-3 px-20 text-white">
+<div class="bg-black h-screen lg:h-80 grid grid-cols-1 lg:grid-cols-3 px-20 text-white">
     <div class="grid grid-rows-[25%_75%]">
         <div class="p-5"><LogoComponent /></div>
         <div class="p-5">
-            <p>{data.subtitle}</p>
+            <SubtitleComponent text={data.subtitle} size="small" color="primary" />
         </div>
     </div>
     <div class="grid grid-rows-[25%_75%]">
-        <div class="p-5"></div>
+        <div class="flex-col gap-y-2 flex p-5">
+            <SubtitleComponent text="Navegar" bold="bold" size="small" color="primary" />
+        </div>
         <ul class="flex-col gap-y-3 flex p-5 mx-10 underline decoration-white">
             {links.map((item) => (
-                    <li><a href={item.url}>{item.name}</a></li>
+                    <li class="font-body"><a href={item.url}>{item.name}</a></li>
             ))}
         </ul>
     </div>
     <div class="grid grid-rows-[25%_75%]">
-        <div class="p-5"></div>
+        <div class="flex-col gap-y-2 flex p-5">
+            <SubtitleComponent text="Ubicaciones" bold="bold" size="small" color="primary" />
+        </div>
         <div class="flex-col gap-y-2 flex p-5">
             {sitios.map((item) => (
-                    <p class="font-bold">{item.lugar}</p>
-                    <p>{item.numero}</p>
+                    <SubtitleComponent text={item.lugar} bold="bold" size="small" color="primary" />
+                    <SubtitleComponent text={item.numero} size="small" color="primary" />
             ))}
         </div>
     </div>

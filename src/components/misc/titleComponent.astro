@@ -3,7 +3,7 @@ const { text = "Default", color = "secondary", size = "small", align = "left" } 
 ---
 
 <h1 class={`font-body ${color === "primary" ? "text-white" :
-    color === "secondary" ? "text-black" : "text-black"} ${size === "big" ? "text-6xl" :
+    color === "secondary" ? "text-black" : "text-black"} ${size === "big" ? "text-4xl md:text-4xl lg:text-6xl" :
     size === "small" ? "text-3xl" : "text-2xl"} ${align === "center" ? "text-center" :
     align === "left" ? "text-left" : "text-left"}`}>
     {text}

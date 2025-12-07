@@ -2,9 +2,9 @@
 import TitleComponent from "../misc/titleComponent.astro";
 import SmallTitleComponent from "../misc/smallTitleComponent.astro";
 import PrimaryButtonComponent from "../misc/primaryButtonComponent.astro";
-import MenuSmallComponent from "./menuSmallComponent.astro";
+import MenuSmallComponent from "../cards/menuSmallComponent.astro";
 import {fetchFromAPI, STRAPI_BASE_URL} from "../../lib/conection";
-import MenuBigComponent from "./menuBigComponent.astro";
+import MenuBigComponent from "../cards/menuBigComponent.astro";
 const data = await fetchFromAPI('home');
 
 interface TarjetasInterface {
@@ -28,7 +28,7 @@ const smallData = tarjetas.slice(1, 4);
                         size="big"
                         align="center" />
     </div>
-    <div class="grid grid-cols-[45%_55%] border-1 border-button rounded-2xl py-10">
+    <div class="grid grid-cols-1 lg:grid-cols-[45%_55%] border-1 border-button rounded-2xl py-10">
         <!-- BIG CARD -->
         <a href={`/tarjetas/${bigData.documentId}`}>
         <MenuBigComponent
@@ -39,7 +39,7 @@ const smallData = tarjetas.slice(1, 4);
         />
         </a>
         <!-- SMALL CARDS -->
-        <div class="grid grid-rows-3 gap-y-1">
+        <div class="grid lg:grid-rows-3 gap-y-1">
             {smallData.map((item) => (
                     <a href={`/tarjetas/${item.documentId}`}>
                     <MenuSmallComponent

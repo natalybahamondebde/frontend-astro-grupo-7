@@ -1,20 +1,18 @@
 ---
-
-import TitleComponent from "./misc/titleComponent.astro";
-import SubtitleComponent from "./misc/subtitleComponent.astro";
-import IconComponent from "./misc/iconComponent.astro";
-import SquareImageComponent from "./misc/squareImageComponent.astro";
-import PrimaryButtonComponent from "./misc/primaryButtonComponent.astro";
-import {fetchFromAPI, STRAPI_BASE_URL} from "../lib/conection";
+import TitleComponent from "../misc/titleComponent.astro";
+import SubtitleComponent from "../misc/subtitleComponent.astro";
+import IconComponent from "../misc/iconComponent.astro";
+import SquareImageComponent from "../misc/squareImageComponent.astro";
+import {fetchFromAPI, STRAPI_BASE_URL} from "../../lib/conection";
 const data = await fetchFromAPI('iconos');
 const servicio = await fetchFromAPI('servicios');
 ---
 
 <div class="my-10">
     {servicio.map((serv) => (
-            <div class="mx-50 grid grid-cols-2 gap-10 mb-10">
+            <div class="mx-10 lg:mx-50 grid grid-cols-1 lg:grid-cols-2 gap-10 mb-10">
 
-                <div class="overflow-hidden relative h-150">
+                <div class="overflow-hidden relative h-100 lg:h-150">
                     <SquareImageComponent image={`${STRAPI_BASE_URL}${serv.banner.url}`} />
                 </div>
 

@@ -1,5 +1,6 @@
 ---
 import {fetchFromAPI, STRAPI_BASE_URL} from "../../lib/conection";
+import {Image} from "astro:assets";
 
 const logosCollection = await fetchFromAPI('logos');
 
@@ -8,4 +9,4 @@ const imageUrl = logosCollection[0].logo[0].url;
 const fullImageUrl = imageUrl ? `${STRAPI_BASE_URL}${imageUrl}` : null;
 ---
 
-<img src={fullImageUrl} class="h-10" alt="alt"/>
+<Image src={fullImageUrl} inferSize={true} class="h-10 w-30" alt="alt"/>

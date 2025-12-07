@@ -1,0 +1,27 @@
+---
+import {fetchFromAPI, STRAPI_BASE_URL} from "../../lib/conection";
+import TitleComponent from "../misc/titleComponent.astro";
+import SubtitleComponent from "../misc/subtitleComponent.astro";
+import SmallTitleComponent from "../misc/smallTitleComponent.astro";
+import SquareImageComponent from "../misc/squareImageComponent.astro";
+const data = await fetchFromAPI('menu');
+---
+
+<div class="bg-secondary relative w-full h-screen">
+    <div class="absolute inset-0 flex flex-col items-center justify-center z-10">
+        <div class="grid grid-cols-1 lg:grid-cols-[40%_60%] h-full mx-5 lg:mx-20">
+            <div class="mx-10 justify-center flex flex-col gap-y-5">
+                <SmallTitleComponent text={data.smallTitle} />
+                <TitleComponent text={data.title}
+                                color="secondary"
+                                size="big" />
+                <SubtitleComponent text={data.info}
+                                   color="text-gris"
+                                   align="left" />
+            </div>
+            <div class="overflow-hidden relative">
+                <SquareImageComponent image={`${STRAPI_BASE_URL}${data.image.url}`} />
+            </div>
+        </div>
+    </div>
+</div>
