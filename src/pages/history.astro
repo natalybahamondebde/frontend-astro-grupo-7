@@ -9,7 +9,7 @@ const data = await fetchFromAPI('about');
 
 <Layout>
     <HeroHistoryComponent />
-    <div class="mx-50 my-20 items-center flex flex-col gap-y-5 text-sm/8">
+    <div class="mx-10 lg:mx-50 my-20 items-center flex flex-col gap-y-5 text-sm/8">
         <SmallTitleComponent text={data.smalTitle4} />
         <SubtitleComponent text={data.info4}
                            color="text-gris"
