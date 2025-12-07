@@ -1,8 +1,7 @@
 ---
-
-import TitleComponent from "./misc/titleComponent.astro";
-import SubtitleComponent from "./misc/subtitleComponent.astro";
-import {fetchFromAPI} from "../lib/conection";
+import TitleComponent from "../misc/titleComponent.astro";
+import SubtitleComponent from "../misc/subtitleComponent.astro";
+import {fetchFromAPI} from "../../lib/conection";
 
 const data = await fetchFromAPI('datos');
 ---

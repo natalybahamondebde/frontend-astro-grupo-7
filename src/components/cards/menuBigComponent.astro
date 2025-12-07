@@ -12,8 +12,10 @@ interface Props {
 const { image= "default.jpg", category, title, description } = Astro.props;
 ---
 
-<div class="p-5 h-120">
+<div class="p-5">
+    <div class="h-100">
     <SquareImageComponent image={image} />
+    </div>
     <div class="m-5">
         <div class="bg-secondary w-20 py-1 text-center text-[12px] font-bold font-body">
             <p class="text-button">{category}</p>

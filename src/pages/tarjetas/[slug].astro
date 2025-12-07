@@ -29,14 +29,16 @@ const { tarjeta }: {tarjeta: TarjetasSingle} = Astro.props;
 ---
 <Layout>
     <div class="h-20"></div>
-    <div class="mx-50 grid grid-cols-[50%_50%] my-20">
-        <div class="h-90 w-90">
+    <div class="mx-10 lg:mx-40 grid grid-cols-1 md:grid-cols-[50%_50%] lg:grid-cols-[50%_50%] my-20 gap-20">
+        <div class="h-150">
             <SquareImageComponent image={`${STRAPI_BASE_URL}${tarjeta.image.url}`} />
         </div>
-        <div class="flex flex-col gap-y-5">
+        <div class="flex flex-col gap-y-5 mx-5">
             <SmallTitleComponent text={tarjeta.tipos?.[0]?.tipo ?? 'General'} />
             <TitleComponent size="big" text={tarjeta.title_tarjeta} />
             <SubtitleComponent color="text-gris" text={tarjeta.info_tarjeta} />
+            <SubtitleComponent color="text-gris" text={tarjeta.descripcion} />
+            <SubtitleComponent color="secondary" bold="bold" text="Precio" />
             <TitleComponent text={tarjeta.precio} />
         </div>
     </div>

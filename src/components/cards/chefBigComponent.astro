@@ -1,16 +1,15 @@
 ---
 
-import TitleComponent from "./misc/titleComponent.astro";
-import SubtitleComponent from "./misc/subtitleComponent.astro";
-import SquareImageComponent from "./misc/squareImageComponent.astro";
-import {fetchFromAPI, STRAPI_BASE_URL} from "../lib/conection";
-import LinkComponent from "./misc/linkComponent.astro";
+import TitleComponent from "../misc/titleComponent.astro";
+import SubtitleComponent from "../misc/subtitleComponent.astro";
+import SquareImageComponent from "../misc/squareImageComponent.astro";
+import {fetchFromAPI, STRAPI_BASE_URL} from "../../lib/conection";
 
 const data = await fetchFromAPI('teams');
 const chef = data[0];
 ---
 
-<div class="bg-white grid grid-cols-[40%_60%] mx-40 p-5">
+<div class="bg-white grid grid-cols-1 lg:grid-cols-[40%_60%] mx-10 lg:mx-40 p-5">
     <div class="relative object-cover h-120">
         <SquareImageComponent image={`${STRAPI_BASE_URL}${chef.image.url}`} />
     </div>

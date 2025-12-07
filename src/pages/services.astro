@@ -2,13 +2,11 @@
 import SquareImageComponent from "../components/misc/squareImageComponent.astro";
 import SubtitleComponent from "../components/misc/subtitleComponent.astro";
 import TitleComponent from "../components/misc/titleComponent.astro";
-import PrimaryButtonComponent from "../components/misc/primaryButtonComponent.astro";
 import Layout from "../layouts/Layout.astro";
 import SmallTitleComponent from "../components/misc/smallTitleComponent.astro";
-import IconComponent from "../components/misc/iconComponent.astro";
 import {fetchFromAPI, STRAPI_BASE_URL} from "../lib/conection";
-import ServiceCard from "../components/serviceCard.astro";
-import RatingCard from "../components/ratingCard.astro";
+import ServiceCard from "../components/cards/serviceCard.astro";
+import RatingCard from "../components/cards/ratingCard.astro";
 const data = await fetchFromAPI('service');
 ---
 
@@ -16,7 +14,7 @@ const data = await fetchFromAPI('service');
 
     <div class="bg-secondary relative w-full h-screen">
         <div class="absolute inset-0 flex flex-col items-center justify-center z-10">
-            <div class="grid grid-cols-[45%_55%] h-full mx-20">
+            <div class="grid grid-cols-1 lg:grid-cols-[45%_55%] h-full mx-10 lg:mx-20">
                 <div class="mx-10 justify-center flex flex-col gap-y-10">
                     <SmallTitleComponent text={data.SmallTitle} />
                     <TitleComponent text={data.title}
@@ -29,7 +27,7 @@ const data = await fetchFromAPI('service');
                     <RatingCard />
                     </div>
                 </div>
-                <div class="overflow-hidden relative">
+                <div class="overflow-hidden relative invisible lg:visible">
                     <SquareImageComponent image={`${STRAPI_BASE_URL}${data.banner.url}`} />
                 </div>
             </div>

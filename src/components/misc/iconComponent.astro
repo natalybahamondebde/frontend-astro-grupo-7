@@ -1,5 +1,6 @@
 ---
+import {Image} from "astro:assets";
 const { icono } = Astro.props;
 ---
 
-<img src={icono} class="h-5 w-5" alt="alt" />
+<Image src={icono} inferSize={true} class="h-5 w-5" alt="alt" />

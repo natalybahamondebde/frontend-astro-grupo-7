@@ -2,7 +2,7 @@
 const { text = "Button", color = "blue" } = Astro.props;
 ---
 
-<div class={`text-white h-18 w-65 flex font-body font-bold items-center transition-colors duration-300 justify-center text-[20px] 
+<div class={`text-white h-15 w-50 lg:h-18 lg:w-65 text-center flex font-body font-bold items-center transition-colors duration-300 justify-center text-[20px] 
   ${color === "primary" ? "bg-button hover:bg-yellow-500" :
     color === "secondary" ? "bg-transparent border-2 border-white hover:bg-white hover:text-black" :
         "bg-blue-500 hover:bg-blue-600"}`}>

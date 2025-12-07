@@ -1,43 +1,27 @@
 ---
 import SubtitleComponent from "../components/misc/subtitleComponent.astro";
 import TitleComponent from "../components/misc/titleComponent.astro";
-import BannerComponent from "../components/bannerComponent.astro";
 import Layout from "../layouts/Layout.astro";
 import PrimaryButtonComponent from "../components/misc/primaryButtonComponent.astro";
 import SquareImageComponent from "../components/misc/squareImageComponent.astro";
 import SmallTitleComponent from "../components/misc/smallTitleComponent.astro";
 import {fetchFromAPI, STRAPI_BASE_URL} from "../lib/conection";
-import RatingCard from "../components/ratingCard.astro";
-import ChefBigComponent from "../components/chefBigComponent.astro";
-import ChefSmallComponent from "../components/chefSmallComponent.astro";
+import RatingCard from "../components/cards/ratingCard.astro";
+import ChefBigComponent from "../components/cards/chefBigComponent.astro";
+import ChefSmallComponent from "../components/cards/chefSmallComponent.astro";
+import HeroAboutComponent from "../components/hero/heroAboutComponent.astro";
 const data = await fetchFromAPI('about');
 ---
 
 <Layout>
     <!-- SECTION 0: B A N N E R -->
-    <BannerComponent image={`${STRAPI_BASE_URL}${data.banner.url}`}>
-        <div class="w-[50%] py-5">
-            <SubtitleComponent text={data.smallTitle}
-                               color="primary"
-                               align="center"/>
-        </div>
-        <div class="w-[70%] mb-20">
-            <TitleComponent text={data.title}
-                            color="primary"
-                            size="big"
-                            align="center" />
-        </div>
-        <div class="flex gap-5 flex-row">
-            <a href={data.url4}><PrimaryButtonComponent text={data.button}
-                                    color="secondary" /></a>
-        </div>
-    </BannerComponent>
+    <HeroAboutComponent />
     <!-- SECTION 1: S Q U A R E S-->
-    <div class="grid grid-cols-3 h-50 gap-15 mx-40 relative bottom-10 bg-white z-20">
+    <div class="grid grid-cols-3 h-50 gap-15 mx-5 lg:mx-40 relative bottom-10 bg-white z-20">
         <RatingCard />
     </div>
     <!-- SECTION 2: H I S T O R Y-->
-    <div class="grid grid-cols-[30%_70%] mx-40 my-20">
+    <div class="grid grid-cols-1 lg:grid-cols-[30%_70%] mx-10 lg:mx-40 my-20">
         <div class="relative object-cover">
             <SquareImageComponent image={`${STRAPI_BASE_URL}${data.banner4.url}`} />
         </div>
@@ -54,7 +38,7 @@ const data = await fetchFromAPI('about');
         </div>
     </div>
 
-    <div class="grid grid-cols-[55%_45%] mx-40 my-20 gap-y-5">
+    <div class="grid grid-cols-1 lg:grid-cols-[55%_45%] mx-10 lg:mx-40 my-20 gap-y-5">
         <div class="mx-10 grid grid-row">
             <SmallTitleComponent text={data.smalTitle5} />
             <TitleComponent text={data.title5}

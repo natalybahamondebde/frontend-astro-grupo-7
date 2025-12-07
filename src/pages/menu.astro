@@ -1,12 +1,10 @@
 ---
-
-import SquareImageComponent from "../components/misc/squareImageComponent.astro";
 import SubtitleComponent from "../components/misc/subtitleComponent.astro";
 import TitleComponent from "../components/misc/titleComponent.astro";
 import Layout from "../layouts/Layout.astro";
-import SmallTitleComponent from "../components/misc/smallTitleComponent.astro";
-import MenuCardComponent from "../components/menuCardComponent.astro";
+import MenuCardComponent from "../components/cards/menuCardComponent.astro";
 import {fetchFromAPI, STRAPI_BASE_URL} from "../lib/conection";
+import HeroMenuComponent from "../components/hero/heroMenuComponent.astro";
 
 interface TarjetasInterface {
     documentId: string;
@@ -22,25 +20,8 @@ const data = await fetchFromAPI('menu');
 ---
 
 <Layout>
-    <div class="bg-secondary relative w-full h-screen">
-        <div class="absolute inset-0 flex flex-col items-center justify-center z-10">
-            <div class="grid grid-cols-[40%_60%] h-full mx-20">
-                <div class="mx-10 justify-center flex flex-col gap-y-5">
-                    <SmallTitleComponent text={data.smallTitle} />
-                    <TitleComponent text={data.title}
-                                    color="secondary"
-                                    size="big" />
-                    <SubtitleComponent text={data.info}
-                                       color="text-gris"
-                                       align="left" />
-                </div>
-                <div>
-                    <SquareImageComponent image={`${STRAPI_BASE_URL}${data.image.url}`} />
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="mx-50 my-15 flex flex-col gap-y-5">
+    <HeroMenuComponent />
+    <div class="mx-10 lg:mx-50 my-15 flex flex-col gap-y-5">
         <TitleComponent text={data.title2}
                         color="secondary"
                         size="big"
@@ -49,7 +30,7 @@ const data = await fetchFromAPI('menu');
                            color="text-gris"
                            align="center" />
     </div>
-    <div class="grid grid-cols-2 mx-40 my-20 gap-10">
+    <div class="grid grid-cols-1 lg:grid-cols-2 mx-5 lg:mx-40 my-20 gap-10">
         {tarjetas.map((item) => (
                 <a href={`/tarjetas/${item.documentId}`}>
                 <MenuCardComponent

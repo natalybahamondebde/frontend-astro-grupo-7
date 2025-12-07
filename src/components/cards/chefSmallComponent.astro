@@ -1,18 +1,18 @@
 ---
 
-import TitleComponent from "./misc/titleComponent.astro";
-import SubtitleComponent from "./misc/subtitleComponent.astro";
-import SquareImageComponent from "./misc/squareImageComponent.astro";
-import PrimaryButtonComponent from "./misc/primaryButtonComponent.astro";
-import {fetchFromAPI, STRAPI_BASE_URL} from "../lib/conection";
+import TitleComponent from "../misc/titleComponent.astro";
+import SubtitleComponent from "../misc/subtitleComponent.astro";
+import SquareImageComponent from "../misc/squareImageComponent.astro";
+import PrimaryButtonComponent from "../misc/primaryButtonComponent.astro";
+import {fetchFromAPI, STRAPI_BASE_URL} from "../../lib/conection";
 
 const data = await fetchFromAPI('teams');
 const chef = data.slice(1, 3);
 ---
 
-<div class="grid grid-cols-2 mx-40 gap-2">
+<div class="grid grid-cols-1 lg:grid-cols-2 mx-10 lg:mx-40 gap-2">
 {chef.map((item) => (
-<div class="bg-white grid grid-cols-[40%_60%] my-10 p-5">
+<div class="bg-white grid grid-cols-1 lg:grid-cols-[40%_60%] my-10 p-5">
     <div>
         <SquareImageComponent image={`${STRAPI_BASE_URL}${item.image.url}`} />
     </div>

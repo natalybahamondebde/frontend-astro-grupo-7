@@ -1,19 +1,18 @@
 ---
-import TitleComponent from "./misc/titleComponent.astro";
-import PrimaryButtonComponent from "./misc/primaryButtonComponent.astro";
-import {fetchFromAPI, STRAPI_BASE_URL} from "../lib/conection";
-import IconComponent from "./misc/iconComponent.astro";
-import SubtitleComponent from "./misc/subtitleComponent.astro";
+import TitleComponent from "../misc/titleComponent.astro";
+import PrimaryButtonComponent from "../misc/primaryButtonComponent.astro";
+import {fetchFromAPI, STRAPI_BASE_URL} from "../../lib/conection";
+import IconComponent from "../misc/iconComponent.astro";
+import SubtitleComponent from "../misc/subtitleComponent.astro";
+import {Image} from "astro:assets";
 
-const { title, features = [], image, button, link } = Astro.props;
-const data = await fetchFromAPI('servicios');
+const { title, image, button, link } = Astro.props;
 const iconos = await fetchFromAPI('iconos');
 
 ---
 
 <div class="relative h-150 rounded-xl overflow-hidden hover:scale-105 transition-all duration-300">
-    <img
-            src={image}
+    <Image src={image} inferSize={true}
             alt="img"
             class="absolute inset-0 w-full h-full object-cover object-center"
     />

@@ -1,11 +1,12 @@
 ---
 import SubtitleComponent from "../misc/subtitleComponent.astro";
 import TitleComponent from "../misc/titleComponent.astro";
-import BannerComponent from "../bannerComponent.astro";
+import BannerComponent from "../misc/bannerComponent.astro";
 import PrimaryButtonComponent from "../misc/primaryButtonComponent.astro";
 import {fetchFromAPI, STRAPI_BASE_URL} from "../../lib/conection";
 const data = await fetchFromAPI('home');
 ---
+
 
 <BannerComponent image={`${STRAPI_BASE_URL}${data.banner.url}`}>
     <div class="w-[70%]">

@@ -4,8 +4,8 @@ import SubtitleComponent from "../misc/subtitleComponent.astro";
 import TitleComponent from "../misc/titleComponent.astro";
 import SmallTitleComponent from "../misc/smallTitleComponent.astro";
 import {fetchFromAPI, STRAPI_BASE_URL} from "../../lib/conection";
-import BlogsSmallComponent from "./blogsSmallComponent.astro";
-import BlogsBigComponent from "./blogsBigComponent.astro";
+import BlogsSmallComponent from "../cards/blogsSmallComponent.astro";
+import BlogsBigComponent from "../cards/blogsBigComponent.astro";
 
 interface TarjetasInterface {
     documentId: string;
@@ -31,7 +31,7 @@ const smallData = blogs.slice(1, 4);
                        color="text-gris"
                        align="center" />
 </div>
-<div class="grid grid-cols-[35%_65%] my-10">
+<div class="grid grid-cols-1 lg:grid-cols-[35%_65%] my-10">
 <BlogsBigComponent
         date={bigData.smalTitle}
         image={`${STRAPI_BASE_URL}${bigData.image.url}`}
@@ -41,7 +41,7 @@ const smallData = blogs.slice(1, 4);
         link=`/blogs/${bigData.documentId}`
 />
 </div>
-<div class="grid grid-cols-3 mt-10 mb-20 gap-10">
+<div class="grid grid-cols-1 lg:grid-cols-3 mt-10 mb-20 gap-10">
     {smallData.map((item) => (
             <BlogsSmallComponent
                     date={item.smalTitle}

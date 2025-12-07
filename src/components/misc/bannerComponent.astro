@@ -1,9 +1,10 @@
 ---
+import {Image} from "astro:assets";
 const { image } = Astro.props;
 ---
 
 <div class="bg-gray-500 relative w-full h-screen overflow-hidden">
-    <img src={image} alt="img" class="h-full w-full object-cover" />
+    <Image src={image} inferSize={true} alt="img" class="h-full w-full object-cover" />
     <div class="absolute inset-0 flex flex-col items-center bg-gradient-to-t from-black/60 to-transparent justify-center text-white z-10">
         <slot />
     </div>

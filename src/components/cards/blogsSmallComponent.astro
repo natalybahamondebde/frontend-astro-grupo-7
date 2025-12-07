@@ -12,7 +12,7 @@ const data = await fetchFromAPI('blogs');
 const { date = "default_date", title = "default_title", description = "default_desc", button, link, image="default.jpg" } = Astro.props;
 ---
 
-<div class="gap-y-5">
+<div class="flex flex-col gap-y-2">
     <RectangleImageComponent image={image} />
     <SubtitleComponent text={date}
                        color="text-gris"
@@ -20,7 +20,7 @@ const { date = "default_date", title = "default_title", description = "default_d
     <TitleComponent text={title}
                     color="secondary"
                     size="small" />
-    <SubtitleComponent text={description.slice(0,90)}
+    <SubtitleComponent text=`${description.slice(0,90)}...`
                        color="text-gris"
                        size="small" />
     <LinkComponent link={link}>

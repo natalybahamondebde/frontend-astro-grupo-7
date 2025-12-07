@@ -20,7 +20,7 @@ const { date = "default_date", title = "default_title", description = "default_d
         <TitleComponent text={title}
                         color="secondary"
                         size="big" />
-        <SubtitleComponent text={description.slice(0,190)}
+        <SubtitleComponent text=`${description.slice(0,190)}...`
                            color="text-gris"
                            align="left" />
         <LinkComponent link={link}>
