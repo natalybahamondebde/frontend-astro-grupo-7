@@ -39,7 +39,7 @@ const smallData = tarjetas.slice(1, 4);
         />
         </a>
         <!-- SMALL CARDS -->
-        <div class="grid lg:grid-rows-3 gap-y-1">
+        <div class="grid grid-rows-1 lg:grid-rows-3 gap-y-10 lg:gap-y-1">
             {smallData.map((item) => (
                     <a href={`/tarjetas/${item.documentId}`}>
                     <MenuSmallComponent
