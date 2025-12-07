@@ -1,6 +1,9 @@
 ---
 import Layout from "../../layouts/Layout.astro";
-import {fetchFromAPI} from "../../lib/conection";
+import {fetchFromAPI, STRAPI_BASE_URL} from "../../lib/conection";
+import SquareImageComponent from "../../components/misc/squareImageComponent.astro";
+import TitleComponent from "../../components/misc/titleComponent.astro";
+import SubtitleComponent from "../../components/misc/subtitleComponent.astro";
 
 interface BlogsSingle {
     documentId: string;
@@ -25,8 +28,14 @@ const { blog }: {blog: BlogsSingle} = Astro.props;
 ---
 <Layout>
     <div class="h-20"></div>
-    <div class="mx-20 my-20 h-100">
-        <h1 class="font-bold">{blog.title}</h1>
-        <p>{blog.info}</p>
+    <div class="mx-40 my-20 items-center flex flex-col justify-center border-1 border-text-gris rounded-2xl p-5 hover:shadow-lg transition-all duration-300 shadow-gray-700">
+        <div class="h-100 w-200 overflow-hidden">
+            <img src={`${STRAPI_BASE_URL}${blog.image.url}`} class="w-full h-full object-cover rounded-2xl" alt="alt"/>
+        </div>
+        <div class="flex flex-col gap-y-5">
+            <SubtitleComponent text={blog.smalTitle} color="text-gris" />
+            <TitleComponent text={blog.title} />
+            <SubtitleComponent text={blog.info} color="text-gris" size="small" />
+        </div>
     </div>
 </Layout>

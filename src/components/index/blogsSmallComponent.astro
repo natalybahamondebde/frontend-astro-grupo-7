@@ -1,0 +1,29 @@
+---
+
+import TitleComponent from "../misc/titleComponent.astro";
+import RectangleImageComponent from "../misc/rectangleImageComponent.astro";
+import SubtitleComponent from "../misc/subtitleComponent.astro";
+import PrimaryButtonComponent from "../misc/primaryButtonComponent.astro";
+import LinkComponent from "../misc/linkComponent.astro";
+import {fetchFromAPI, STRAPI_BASE_URL} from "../../lib/conection";
+
+const data = await fetchFromAPI('blogs');
+
+const { date = "default_date", title = "default_title", description = "default_desc", button, link, image="default.jpg" } = Astro.props;
+---
+
+<div class="gap-y-5">
+    <RectangleImageComponent image={image} />
+    <SubtitleComponent text={date}
+                       color="text-gris"
+                       size="small"/>
+    <TitleComponent text={title}
+                    color="secondary"
+                    size="small" />
+    <SubtitleComponent text={description.slice(0,90)}
+                       color="text-gris"
+                       size="small" />
+    <LinkComponent link={link}>
+        <SubtitleComponent text={button} color="text-button" align="right" />
+    </LinkComponent>
+</div>

@@ -1,0 +1,28 @@
+---
+
+import SubtitleComponent from "../misc/subtitleComponent.astro";
+import TitleComponent from "../misc/titleComponent.astro";
+import {fetchFromAPI, STRAPI_BASE_URL} from "../../lib/conection";
+import MenuSmallComponent from "./menuSmallComponent.astro";
+import ReviewsSmallComponent from "./reviewsSmallComponent.astro";
+import SmallTitleComponent from "../misc/smallTitleComponent.astro";
+const data = await fetchFromAPI('home');
+const review = await fetchFromAPI('resena-personas');
+---
+
+<div class="items-center justify-center gap-y-10 flex flex-col mt-10">
+    <SmallTitleComponent text={data.smalTitle_resenas} />
+    <TitleComponent text={data.title_resenas}
+                    align="center"
+                    color="secondary"
+                    size="big" />
+    <div class="grid grid-rows-3 gap-y-5">
+        {review.map((item) => (
+                <ReviewsSmallComponent
+                        image={`${STRAPI_BASE_URL}${item.image.url}`}
+                        title={item.nombre}
+                        description={item.info}
+                />
+        ))}
+    </div>
+</div>

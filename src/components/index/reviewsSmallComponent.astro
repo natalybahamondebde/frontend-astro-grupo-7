@@ -1,0 +1,23 @@
+---
+
+import SubtitleComponent from "../misc/subtitleComponent.astro";
+
+interface Props {
+    image: string;
+    title: string;
+    description: string;
+}
+const { image, title = "default_title", description = "default_desc" } = Astro.props;
+---
+
+<div class="flex lg:flex-row w-full lg:h-40 p-5 hover:scale-105 transition-all duration-300 gap-5 shadow-lg shadow-text-gris bg-white my-1">
+    <div class="rounded-full bg-gray-300 aspect-square relative">
+        <img src={image} class="object-cover h-full w-full rounded-full" alt="alt"/>
+    </div>
+    <div class="flex flex-col">
+        <div class="font-bold">{title}</div>
+        <SubtitleComponent text={description}
+                           align="left"
+                           color="text-gris" />
+    </div>
+</div>

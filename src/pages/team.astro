@@ -1,0 +1,60 @@
+---
+
+import TitleComponent from "../components/misc/titleComponent.astro";
+import SubTitleComponent from "../components/misc/subtitleComponent.astro";
+import Layout from "../layouts/Layout.astro";
+import BannerComponent from "../components/bannerComponent.astro";
+import {fetchFromAPI, STRAPI_BASE_URL} from "../lib/conection";
+import SquareImageComponent from "../components/misc/squareImageComponent.astro";
+
+const data = await fetchFromAPI('equipo');
+const equipo = await fetchFromAPI('tarjeta-equipos');
+const chefs = equipo.slice(3,12)
+const staff = equipo.slice(0,3)
+---
+
+<Layout>
+    <div class="h-20"></div>
+    <BannerComponent image={`${STRAPI_BASE_URL}${data.banner.url}`}>
+        <div class="flex flex-col gap-y-5 mx-50">
+            <TitleComponent text={data.title} color="primary" align="center" size="big"/>
+            <SubTitleComponent text={data.info}
+                               color="primary"
+                               align="center"/>
+        </div>
+    </BannerComponent>
+    <div class="grid grid-cols-3 gap-5 relative mx-50 bottom-40 z-30">
+        {staff.map((item) => (
+                <div class="bg-white flex flex-col items-center p-5">
+                    <div class="h-80 w-full object-cover relative">
+                        <SquareImageComponent image={`${STRAPI_BASE_URL}${item.image.url}`} />
+                    </div>
+                    <div class="flex flex-col gap-y-5 my-5 text-center items-center">
+                        <TitleComponent color="secondary" size="small" text={item.nombre} />
+                        <SubTitleComponent color="secondary" bold="bold" text={item.cargo} />
+                    </div>
+                </div>
+        ))}
+    </div>
+    <div class="mx-50">
+    <div class="flex flex-col gap-y-5 mb-20">
+    <TitleComponent text={data.title2} color="secondary" align="center" size="big"/>
+    <SubTitleComponent text={data.info2}
+                       color="text-gris"
+                       align="center"/>
+    </div>
+    <div class="grid grid-cols-3 gap-5 my-20">
+        {chefs.map((item) => (
+        <div class="bg-white flex flex-col items-center p-5">
+            <div class="h-80 w-full object-cover relative">
+            <SquareImageComponent image={`${STRAPI_BASE_URL}${item.image.url}`} />
+            </div>
+            <div class="flex flex-col gap-y-5 my-5 text-center items-center">
+            <TitleComponent color="secondary" size="small" text={item.nombre} />
+            <SubTitleComponent color="secondary" bold="bold" text={item.cargo} />
+            </div>
+        </div>
+        ))}
+    </div>
+    </div>
+</Layout>

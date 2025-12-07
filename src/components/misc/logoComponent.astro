@@ -1,0 +1,11 @@
+---
+import {fetchFromAPI, STRAPI_BASE_URL} from "../../lib/conection";
+
+const logosCollection = await fetchFromAPI('logos');
+
+const imageUrl = logosCollection[0].logo[0].url;
+
+const fullImageUrl = imageUrl ? `${STRAPI_BASE_URL}${imageUrl}` : null;
+---
+
+<img src={fullImageUrl} class="h-10" alt="alt"/>

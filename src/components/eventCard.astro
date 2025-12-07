@@ -1,23 +1,37 @@
 ---
-import TitleComponent from "./titleComponent.astro";
-import PrimaryButtonComponent from "./primaryButtonComponent.astro";
+import TitleComponent from "./misc/titleComponent.astro";
+import PrimaryButtonComponent from "./misc/primaryButtonComponent.astro";
+import {fetchFromAPI, STRAPI_BASE_URL} from "../lib/conection";
+import IconComponent from "./misc/iconComponent.astro";
+import SubtitleComponent from "./misc/subtitleComponent.astro";
 
-const { title, features = [] } = Astro.props;
+const { title, features = [], image, button, link } = Astro.props;
+const data = await fetchFromAPI('servicios');
+const iconos = await fetchFromAPI('iconos');
+
 ---
 
-<div class="grid grid-rows-[40%_45%_14%] gap-4 bg-gray-500 h-150 rounded-xl p-10 items-end">
-    <TitleComponent text={title} color="primary" />
+<div class="relative h-150 rounded-xl overflow-hidden hover:scale-105 transition-all duration-300">
+    <img
+            src={image}
+            alt="img"
+            class="absolute inset-0 w-full h-full object-cover object-center"
+    />
+    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
 
-    <div class="grid grid-cols-3 gap-2">
-        {features.map((item) => (
-                <div class="aspect-square grid grid-rows-2 py-7 text-center items-center text-white">
-                    <div>{item.icon}</div>
-                    <div>{item.label}</div>
-                </div>
-        ))}
-    </div>
+    <div class="absolute inset-0 z-20 flex flex-col justify-end p-4 pb-10 gap-4">
+        <div class="grid grid-cols-3 justify-items-center gap-2">
+            {iconos.map((item) => (
+                    <div class="flex flex-col gap-2 items-center text-center">
+                        <IconComponent icono={`${STRAPI_BASE_URL}${item.icono.url}`} />
+                        <SubtitleComponent color="primary" text={item.nombre} size="small" />
+                    </div>
+            ))}
+        </div>
 
-    <div class="flex justify-center">
-        <PrimaryButtonComponent text="RESERVATION" color="primary" />
+        <div class="flex flex-col items-center gap-4">
+            <TitleComponent text={title} color="primary" />
+            <a href={link}><PrimaryButtonComponent text={button} color="primary" /></a>
+        </div>
     </div>
 </div>

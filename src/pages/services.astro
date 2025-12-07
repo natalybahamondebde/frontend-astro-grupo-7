@@ -1,52 +1,39 @@
 ---
-import SquareImageComponent from "../components/squareImageComponent.astro";
-import SubtitleComponent from "../components/subtitleComponent.astro";
-import TitleComponent from "../components/titleComponent.astro";
-import PrimaryButtonComponent from "../components/primaryButtonComponent.astro";
+import SquareImageComponent from "../components/misc/squareImageComponent.astro";
+import SubtitleComponent from "../components/misc/subtitleComponent.astro";
+import TitleComponent from "../components/misc/titleComponent.astro";
+import PrimaryButtonComponent from "../components/misc/primaryButtonComponent.astro";
 import Layout from "../layouts/Layout.astro";
-import SmallTitleComponent from "../components/smallTitleComponent.astro";
+import SmallTitleComponent from "../components/misc/smallTitleComponent.astro";
+import IconComponent from "../components/misc/iconComponent.astro";
+import {fetchFromAPI, STRAPI_BASE_URL} from "../lib/conection";
+import ServiceCard from "../components/serviceCard.astro";
+import RatingCard from "../components/ratingCard.astro";
+const data = await fetchFromAPI('service');
 ---
 
 <Layout>
+
     <div class="bg-secondary relative w-full h-screen">
         <div class="absolute inset-0 flex flex-col items-center justify-center z-10">
             <div class="grid grid-cols-[45%_55%] h-full mx-20">
-                <div class="mx-10 justify-center flex flex-col">
-                    <SmallTitleComponent text="OUR SERVICES" />
-                    <TitleComponent text="Provide Unique Service For Your Special Day"
+                <div class="mx-10 justify-center flex flex-col gap-y-10">
+                    <SmallTitleComponent text={data.SmallTitle} />
+                    <TitleComponent text={data.title}
                                     color="secondary"
                                     size="big" />
-                    <SubtitleComponent text="A culinary paradise for foodies looking for a dining experience. Dining should be an unforgettable experience."
-                                       color="secondary"
+                    <SubtitleComponent text={data.info}
+                                       color="text-gris"
                                        align="left" />
-                    <div class="grid grid-cols-3 h-55 gap-3 py-15">
-                        <div class="justify-center items-center flex flex-col">
-                            <TitleComponent text="24k+" color="secondary" size="small" />
-                            <SubtitleComponent text="Satisfied Customers" color="secondary" />
-                        </div>
-                        <div class="justify-center items-center flex flex-col">
-                            <TitleComponent text="24k+" color="secondary" size="small" />
-                            <SubtitleComponent text="Satisfied Customers" color="secondary" />
-                        </div>
-                        <div class="justify-center items-center flex flex-col">
-                            <TitleComponent text="24k+" color="secondary" size="small" />
-                            <SubtitleComponent text="Satisfied Customers" color="secondary" />
-                        </div>
+                    <div class="grid grid-cols-3 gap-3">
+                    <RatingCard />
                     </div>
                 </div>
-                <div>
-                    <SquareImageComponent />
+                <div class="overflow-hidden relative">
+                    <SquareImageComponent image={`${STRAPI_BASE_URL}${data.banner.url}`} />
                 </div>
             </div>
         </div>
     </div>
-    <div class="mx-50">
-        <TitleComponent text="Read Our Delicious Menu"
-                        color="secondary"
-                        size="big"
-                        align="center" />
-        <SubtitleComponent text="We've meticulously created each flavor on our menu to entice your palate and leave you wanting more. Each meal is a work of art, combining the love of our talented chefs with the freshest ingredients."
-                           color="secondary"
-                           align="center" />
-    </div>
+    <ServiceCard />
 </Layout>

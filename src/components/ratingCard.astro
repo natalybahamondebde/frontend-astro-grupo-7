@@ -1,0 +1,15 @@
+---
+
+import TitleComponent from "./misc/titleComponent.astro";
+import SubtitleComponent from "./misc/subtitleComponent.astro";
+import {fetchFromAPI} from "../lib/conection";
+
+const data = await fetchFromAPI('datos');
+---
+
+{data.map((item) => (
+<div class="justify-center items-center flex flex-col">
+    <TitleComponent text={item.numero} color="secondary" size="small" />
+    <SubtitleComponent text={item.info} color="text-gris" />
+</div>
+    ))}

@@ -1,18 +1,16 @@
 ---
-import SquareImageComponent from "./squareImageComponent.astro";
-import SubtitleComponent from "./subtitleComponent.astro";
-
+import SquareImageComponent from "../misc/squareImageComponent.astro";
+import SubtitleComponent from "../misc/subtitleComponent.astro";
 interface Props {
     image: string;
     category: string;
     title: string;
     description: string;
 }
-
-const { image= "default.jpg", category, title, description } = Astro.props;
+const { image, category = "default_cat", title = "default_title", description = "default_desc" } = Astro.props;
 ---
 
-<div class="p-5 h-120">
+<div class="grid grid-cols-[25%_75%] p-2 h-50 rounded-2xl">
     <SquareImageComponent image={image} />
     <div class="m-5">
         <div class="bg-secondary w-20 py-1 text-center text-[12px] font-bold font-body">

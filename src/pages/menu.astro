@@ -1,68 +1,60 @@
 ---
 
-import SquareImageComponent from "../components/squareImageComponent.astro";
-import SubtitleComponent from "../components/subtitleComponent.astro";
-import TitleComponent from "../components/titleComponent.astro";
-import PrimaryButtonComponent from "../components/primaryButtonComponent.astro";
+import SquareImageComponent from "../components/misc/squareImageComponent.astro";
+import SubtitleComponent from "../components/misc/subtitleComponent.astro";
+import TitleComponent from "../components/misc/titleComponent.astro";
 import Layout from "../layouts/Layout.astro";
-import SmallTitleComponent from "../components/smallTitleComponent.astro";
+import SmallTitleComponent from "../components/misc/smallTitleComponent.astro";
 import MenuCardComponent from "../components/menuCardComponent.astro";
-import {fetchFromAPI} from "../lib/conection";
+import {fetchFromAPI, STRAPI_BASE_URL} from "../lib/conection";
 
 interface TarjetasInterface {
     documentId: string;
-    smalTitle: string;
-    title: string;
-    info: string;
-    price: string;
+    smalTitle_tarjeta: string;
+    title_tarjeta: string;
+    info_tarjeta: string;
+    precio: string;
 }
 
-const data = await fetchFromAPI('home');
 const tarjetas: TarjetasInterface[] = (await fetchFromAPI('tarjetas')) || [];
+
+const data = await fetchFromAPI('menu');
 ---
 
 <Layout>
     <div class="bg-secondary relative w-full h-screen">
         <div class="absolute inset-0 flex flex-col items-center justify-center z-10">
             <div class="grid grid-cols-[40%_60%] h-full mx-20">
-                <div class="mx-10 justify-center flex flex-col">
-                    <SmallTitleComponent text="MENU" />
-                    <TitleComponent text="Our Menu"
+                <div class="mx-10 justify-center flex flex-col gap-y-5">
+                    <SmallTitleComponent text={data.smallTitle} />
+                    <TitleComponent text={data.title}
                                     color="secondary"
                                     size="big" />
-                    <SubtitleComponent text="The food at Dinely Restaurant best describes it self in one word diversity. Foodies will have no shortage of options, from the nutritious breakfast menu offered by Kakao to afternoon coffee and delectable fare."
-                                       color="secondary"
+                    <SubtitleComponent text={data.info}
+                                       color="text-gris"
                                        align="left" />
-                    <PrimaryButtonComponent text="SEE ALL MENU"
-                                            color="primary" />
                 </div>
                 <div>
-                    <SquareImageComponent />
+                    <SquareImageComponent image={`${STRAPI_BASE_URL}${data.image.url}`} />
                 </div>
             </div>
         </div>
     </div>
-    <div class="mx-50 my-10">
-        <TitleComponent text="Read Our Delicious Menu"
+    <div class="mx-50 my-15 flex flex-col gap-y-5">
+        <TitleComponent text={data.title2}
                         color="secondary"
                         size="big"
                         align="center" />
-        <SubtitleComponent text="We've meticulously created each flavor on our menu to entice your palate and leave you wanting more. Each meal is a work of art, combining the love of our talented chefs with the freshest ingredients."
-                           color="secondary"
+        <SubtitleComponent text={data.info2}
+                           color="text-gris"
                            align="center" />
     </div>
-    <ul class="flex flex-row items-center justify-center gap-15">
-        <li class="bg-button py-3 px-15 text-white font-bold">All</li>
-        <li>Desserts</li>
-        <li>Drinks</li>
-        <li>Main</li>
-        <li>Breakfast</li>
-    </ul>
-    <div class="grid grid-cols-2 mx-40 my-10 gap-10">
+    <div class="grid grid-cols-2 mx-40 my-20 gap-10">
         {tarjetas.map((item) => (
                 <a href={`/tarjetas/${item.documentId}`}>
                 <MenuCardComponent
-                        category={item.smalTitle_tarjeta}
+                        image={`${STRAPI_BASE_URL}${item.image.url}`}
+                        category={item.tipos?.[0]?.tipo ?? 'General'}
                         title={item.title_tarjeta}
                         description={item.info_tarjeta}
                         price={item.precio}

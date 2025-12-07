@@ -1,0 +1,29 @@
+---
+
+import TitleComponent from "../misc/titleComponent.astro";
+import SubtitleComponent from "../misc/subtitleComponent.astro";
+import SquareImageComponent from "../misc/squareImageComponent.astro";
+import LinkComponent from "../misc/linkComponent.astro";
+
+
+const { date = "default_date", title = "default_title", description = "default_desc", button, link, image } = Astro.props;
+---
+
+
+    <div class="h-110">
+        <SquareImageComponent image={image} />
+    </div>
+    <div class="mx-10 flex flex-col justify-center gap-y-5">
+        <SubtitleComponent text={date}
+                           color="text-gris"
+                           align="left" />
+        <TitleComponent text={title}
+                        color="secondary"
+                        size="big" />
+        <SubtitleComponent text={description.slice(0,190)}
+                           color="text-gris"
+                           align="left" />
+        <LinkComponent link={link}>
+            <SubtitleComponent text={button} color="text-button" align="right" />
+        </LinkComponent>
+    </div>

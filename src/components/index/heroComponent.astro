@@ -1,0 +1,30 @@
+---
+import SubtitleComponent from "../misc/subtitleComponent.astro";
+import TitleComponent from "../misc/titleComponent.astro";
+import BannerComponent from "../bannerComponent.astro";
+import PrimaryButtonComponent from "../misc/primaryButtonComponent.astro";
+import {fetchFromAPI, STRAPI_BASE_URL} from "../../lib/conection";
+const data = await fetchFromAPI('home');
+---
+
+<BannerComponent image={`${STRAPI_BASE_URL}${data.banner.url}`}>
+    <div class="w-[70%]">
+        <TitleComponent text={data.title}
+                        color="primary"
+                        size="big"
+                        align="center" />
+    </div>
+    <div class="w-[50%] py-10">
+        <SubtitleComponent text={data.subtitle}
+                           color="primary"
+                           align="center"/>
+    </div>
+    <div class="flex gap-5 flex-row">
+        <a href={data.url_1}>
+        <PrimaryButtonComponent text={data.button_1}
+                                color="primary" /></a>
+        <a href={data.url}>
+        <PrimaryButtonComponent text={data.name}
+                                color="secondary" /></a>
+    </div>
+</BannerComponent>
