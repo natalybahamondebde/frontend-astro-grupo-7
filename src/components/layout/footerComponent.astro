@@ -1,32 +1,35 @@
 ---
 
+import LogoComponent from "../misc/logoComponent.astro";
+import {fetchFromAPI} from "../../lib/conection";
+import LineComponent from "../misc/lineComponent.astro";
+const data = await fetchFromAPI('home');
+const links = await fetchFromAPI('navards');
+const sitios = await fetchFromAPI('sitios');
 ---
 
 <div class="bg-black h-80 grid grid-cols-3 px-20 text-white">
     <div class="grid grid-rows-[25%_75%]">
-        <div class="p-5">LOGO</div>
+        <div class="p-5"><LogoComponent /></div>
         <div class="p-5">
-            Find culinary bliss at Dinely Restaurant. Our menu, created with care and precision, offers a delightful array of flavors.
+            <p>{data.subtitle}</p>
         </div>
     </div>
     <div class="grid grid-rows-[25%_75%]">
-        <div class="p-5">NAVIGATE</div>
-        <div class="flex-col gap-y-3 flex p-5">
-            <p>MENU</p>
-            <p>ABOUT</p>
-            <p>SERVICES</p>
-            <p>TEAM</p>
-        </div>
+        <div class="p-5"></div>
+        <ul class="flex-col gap-y-3 flex p-5 mx-10 underline decoration-white">
+            {links.map((item) => (
+                    <li><a href={item.url}>{item.name}</a></li>
+            ))}
+        </ul>
     </div>
     <div class="grid grid-rows-[25%_75%]">
-        <div class="p-5">LOCATION</div>
+        <div class="p-5"></div>
         <div class="flex-col gap-y-2 flex p-5">
-            <p class="font-bold">123 Gourmet Lane, Culinary Plaza, NY 10001</p>
-            <p>(888) 1029384</p>
-            <p class="font-bold">123 Gourmet Lane, Culinary Plaza, NY 10001</p>
-            <p>(888) 1029384</p>
-            <p class="font-bold">123 Gourmet Lane, Culinary Plaza, NY 10001</p>
-            <p>(888) 1029384</p>
+            {sitios.map((item) => (
+                    <p class="font-bold">{item.lugar}</p>
+                    <p>{item.numero}</p>
+            ))}
         </div>
     </div>
 </div>

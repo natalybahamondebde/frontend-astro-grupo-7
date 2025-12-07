@@ -6,155 +6,89 @@ import Layout from "../layouts/Layout.astro";
 import PrimaryButtonComponent from "../components/misc/primaryButtonComponent.astro";
 import SquareImageComponent from "../components/misc/squareImageComponent.astro";
 import SmallTitleComponent from "../components/misc/smallTitleComponent.astro";
+import {fetchFromAPI, STRAPI_BASE_URL} from "../lib/conection";
+import RatingCard from "../components/ratingCard.astro";
+import ChefBigComponent from "../components/chefBigComponent.astro";
+import ChefSmallComponent from "../components/chefSmallComponent.astro";
+const data = await fetchFromAPI('about');
 ---
 
 <Layout>
     <!-- SECTION 0: B A N N E R -->
-    <BannerComponent>
+    <BannerComponent image={`${STRAPI_BASE_URL}${data.banner.url}`}>
         <div class="w-[50%] py-5">
-            <SubtitleComponent text="Our Story"
+            <SubtitleComponent text={data.smallTitle}
                                color="primary"
                                align="center"/>
         </div>
         <div class="w-[70%] mb-20">
-            <TitleComponent text="World of Culinary Oasis"
+            <TitleComponent text={data.title}
                             color="primary"
                             size="big"
                             align="center" />
         </div>
         <div class="flex gap-5 flex-row">
-            <PrimaryButtonComponent text="READ OUR STORY"
-                                    color="secondary" />
+            <a href={data.url4}><PrimaryButtonComponent text={data.button}
+                                    color="secondary" /></a>
         </div>
     </BannerComponent>
     <!-- SECTION 1: S Q U A R E S-->
-    <div class="grid grid-cols-3 h-50 gap-15 mx-40 relative bottom-10">
-        <div class="bg-white justify-center items-center flex flex-col">
-            <TitleComponent text="24k+" color="secondary" size="big" />
-            <SubtitleComponent text="Satisfied Customers" color="secondary" />
-        </div>
-        <div class="bg-white justify-center items-center flex flex-col">
-            <TitleComponent text="24k+" color="secondary" size="big" />
-            <SubtitleComponent text="Satisfied Customers" color="secondary" />
-        </div>
-        <div class="bg-white justify-center items-center flex flex-col">
-            <TitleComponent text="24k+" color="secondary" size="big" />
-            <SubtitleComponent text="Satisfied Customers" color="secondary" />
-        </div>
+    <div class="grid grid-cols-3 h-50 gap-15 mx-40 relative bottom-10 bg-white z-20">
+        <RatingCard />
     </div>
     <!-- SECTION 2: H I S T O R Y-->
-    <div class="grid grid-cols-[25%_75%] h-120 mx-40 my-10">
-        <div>
-            <SquareImageComponent />
+    <div class="grid grid-cols-[30%_70%] mx-40 my-20">
+        <div class="relative object-cover">
+            <SquareImageComponent image={`${STRAPI_BASE_URL}${data.banner4.url}`} />
         </div>
-        <div class="mx-10 grid grid-row">
-            <SmallTitleComponent text="HISTORY" />
-            <TitleComponent text="The Tale of The Launch of Our First Eatery"
+        <div class="mx-10 grid grid-row gap-y-5">
+            <SmallTitleComponent text={data.smalTitle4} />
+            <TitleComponent text={data.title4}
                             color="secondary"
                             size="big" />
-            <SubtitleComponent text="Our first restaurant's history is based on passion, commitment, and common goals. It all began with a group of food enthusiasts who thought that extraordinary meals had the ability to transform people. We think that our restaurant brings flavor to life, and we treat our patrons more like honored guests than like business partners."
-                               color="secondary"
+            <SubtitleComponent text={data.info4.slice(0,262)}
+                               color="text-gris"
                                align="left" />
-            <PrimaryButtonComponent text="READ OUR STORY"
-                                    color="primary" />
+            <a href={data.url4}><PrimaryButtonComponent text={data.button4}
+                                    color="primary" /></a>
         </div>
     </div>
 
-    <div class="grid grid-cols-[55%_45%] h-170 mx-40 my-10">
+    <div class="grid grid-cols-[55%_45%] mx-40 my-20 gap-y-5">
         <div class="mx-10 grid grid-row">
-            <SmallTitleComponent text="OUR SERVICE" />
-            <TitleComponent text="Provide Unique Service For Your Special Day"
+            <SmallTitleComponent text={data.smalTitle5} />
+            <TitleComponent text={data.title5}
                             color="secondary"
                             size="big" />
-            <SubtitleComponent text="More than simply a restaurant, Dinely is a culinary haven for gourmets seeking out exceptional eating experiences. At Dinely, we think that a meal should be a memorable experience, and our skilled chefs are dedicated to producing imaginative and attractive cuisine."
-                               color="secondary"
+            <SubtitleComponent text={data.info5}
+                               color="text-gris"
                                align="left" />
             <div class="grid grid-cols-3 h-50">
-                <div class="justify-center items-center flex flex-col">
-                    <TitleComponent text="24k+" color="secondary" size="small" />
-                    <SubtitleComponent text="Satisfied Customers" color="secondary" />
-                </div>
-                <div class="justify-center items-center flex flex-col">
-                    <TitleComponent text="24k+" color="secondary" size="small" />
-                    <SubtitleComponent text="Satisfied Customers" color="secondary" />
-                </div>
-                <div class="justify-center items-center flex flex-col">
-                    <TitleComponent text="24k+" color="secondary" size="small" />
-                    <SubtitleComponent text="Satisfied Customers" color="secondary" />
-                </div>
+                <RatingCard />
             </div>
-            <PrimaryButtonComponent text="RESERVATION"
+            <a href={data.url5}><PrimaryButtonComponent text={data.button5}
                                     color="primary" />
+            </a>
         </div>
-        <div>
-            <SquareImageComponent />
+        <div class="relative object-cover">
+            <SquareImageComponent image={`${STRAPI_BASE_URL}${data.banner5.url}`} />
         </div>
     </div>
-    <div class="flex flex-col items-center">
-        <SmallTitleComponent text="TEAM" />
-        <TitleComponent text="Meet Our Chef"
+    <div class="flex flex-col items-center gap-y-5 my-10">
+        <SmallTitleComponent text={data.smallTitle2} />
+        <TitleComponent text={data.title2}
                         color="secondary"
                         size="big"
                         align="center" />
-        <SubtitleComponent text="Our chef brings a wealth of culinary experience to our restaurant."
-                           color="secondary"
+        <SubtitleComponent text={data.info2}
+                           color="text-gris"
                            align="center" />
     </div>
-    <div class="bg-white grid grid-cols-[40%_60%] h-120 mx-40 my-10">
-        <div>
-            <SquareImageComponent />
-        </div>
-        <div class="mx-10 justify-center flex flex-col">
-            <TitleComponent text="Sturart Macgil"
-                            color="secondary"
-                            size="big" />
-            <TitleComponent text="Head Chef"
-                            color="secondary"
-                            size="small" />
-            <SubtitleComponent text="Sturart Macgil, our head chef has a plethora of expertise and a love for cooking. He has a natural aptitude for crafting flavors and presentations that astonish the senses. He has received training in the best culinary traditions."
-                               color="secondary"
-                               align="left" />
-            <PrimaryButtonComponent text="READ OUR STORY"
-                                    color="primary" />
-        </div>
-    </div>
-    <div class="grid grid-cols-2 mx-40 gap-2">
-        <div class="bg-white grid grid-cols-[40%_60%] h-100 my-10">
-            <div>
-                <SquareImageComponent />
-            </div>
-            <div class="mx-10 justify-center flex flex-col">
-                <TitleComponent text="Sturart Macgil"
-                                color="secondary"
-                                size="small" />
-                <SubtitleComponent text="Head Chef"
-                                   color="secondary"/>
-                <SubtitleComponent text="Sophie Moore, our head waiter, makes sure your evening is the best it can be. Their vast culinary knowledge, precise timing, and gracious manner."
-                                   color="secondary"
-                                   align="left" />
-                <PrimaryButtonComponent text="READ OUR STORY"
-                                        color="primary" />
-            </div>
-        </div>
-        <div class="bg-white grid grid-cols-[40%_60%] h-100 my-10">
-            <div>
-                <SquareImageComponent />
-            </div>
-            <div class="mx-10 justify-center flex flex-col">
-                <TitleComponent text="Sturart Macgil"
-                                color="secondary"
-                                size="small" />
-                <SubtitleComponent text="Head Chef"
-                                color="secondary"/>
-                <SubtitleComponent text="Sturart Macgil, our head chef has a plethora of expertise and a love for cooking. He has a natural aptitude for crafting flavors and presentations that astonish the senses. He has received training in the best culinary traditions."
-                                   color="secondary"
-                                   align="left" />
-                <PrimaryButtonComponent text="READ OUR STORY"
-                                        color="primary" />
-            </div>
-        </div>
-    </div>
+    <ChefBigComponent />
+    <ChefSmallComponent />
     <div class="flex items-center flex-col my-5 pb-30">
-        <PrimaryButtonComponent text="MEET OUR TEAM" color="primary" />
+        <a href={data.url6}>
+        <PrimaryButtonComponent text={data.button6} color="primary" />
+        </a>
     </div>
 </Layout>

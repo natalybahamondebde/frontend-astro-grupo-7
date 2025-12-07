@@ -2,9 +2,9 @@
 import TitleComponent from "../misc/titleComponent.astro";
 import SmallTitleComponent from "../misc/smallTitleComponent.astro";
 import PrimaryButtonComponent from "../misc/primaryButtonComponent.astro";
-import MenuSmallComponent from "../menuSmallComponent.astro";
-import {fetchFromAPI} from "../../lib/conection";
-import MenuBigComponent from "../menuBigComponent.astro";
+import MenuSmallComponent from "./menuSmallComponent.astro";
+import {fetchFromAPI, STRAPI_BASE_URL} from "../../lib/conection";
+import MenuBigComponent from "./menuBigComponent.astro";
 const data = await fetchFromAPI('home');
 
 interface TarjetasInterface {
@@ -20,39 +20,40 @@ const bigData = tarjetas[0];
 const smallData = tarjetas.slice(1, 4);
 ---
 
-<div class="mt-10 h-200">
-    <div class="flex flex-col items-center">
+<div class="mt-10">
+    <div class="flex flex-col items-center my-5">
         <SmallTitleComponent text={data.smallTitle_especial} />
         <TitleComponent text={data.title_especial}
                         color="secondary"
                         size="big"
                         align="center" />
     </div>
-    <div class="grid grid-cols-[45%_55%]">
+    <div class="grid grid-cols-[45%_55%] border-1 border-button rounded-2xl py-10">
         <!-- BIG CARD -->
         <a href={`/tarjetas/${bigData.documentId}`}>
         <MenuBigComponent
-                image={bigData.imagen || "default.jpg"}
-                category={bigData.smalTitle_tarjeta}
+                image={`${STRAPI_BASE_URL}${bigData.image.url}`}
+                category={bigData.tipos?.[0]?.tipo ?? 'General'}
                 title={bigData.title_tarjeta}
                 description={bigData.info_tarjeta}
         />
         </a>
         <!-- SMALL CARDS -->
-        <div class="grid grid-rows-3">
+        <div class="grid grid-rows-3 gap-y-1">
             {smallData.map((item) => (
                     <a href={`/tarjetas/${item.documentId}`}>
                     <MenuSmallComponent
-                            image={item.image_tarjeta || "default.jpg"}
-                            category={item.smalTitle_tarjeta}
+                            image={`${STRAPI_BASE_URL}${item.image.url}`}
+                            category={item.tipos?.[0]?.tipo ?? 'General'}
                             title={item.title_tarjeta}
                             description={item.info_tarjeta}
-                    /></a>
+                    />
+                    </a>
             ))}
         </div>
 </div>
 </div>
 <!-- BUTTON -->
-<div class="items-center flex flex-col justify-center">
+<div class="items-center flex flex-col justify-center my-10">
     <a href={data.url3}><PrimaryButtonComponent text={data.boton3} color="primary"/></a>
 </div>

@@ -2,32 +2,27 @@
 
 import SubtitleComponent from "../misc/subtitleComponent.astro";
 import TitleComponent from "../misc/titleComponent.astro";
-import {fetchFromAPI} from "../../lib/conection";
+import {fetchFromAPI, STRAPI_BASE_URL} from "../../lib/conection";
+import MenuSmallComponent from "./menuSmallComponent.astro";
+import ReviewsSmallComponent from "./reviewsSmallComponent.astro";
+import SmallTitleComponent from "../misc/smallTitleComponent.astro";
 const data = await fetchFromAPI('home');
+const review = await fetchFromAPI('resena-personas');
 ---
 
-<div class="items-center justify-center gap-y-10 flex flex-col mt-10 h-150">
+<div class="items-center justify-center gap-y-10 flex flex-col mt-10">
+    <SmallTitleComponent text={data.smalTitle_resenas} />
     <TitleComponent text={data.title_resenas}
                     align="center"
                     color="secondary"
                     size="big" />
-    <div class="mx-50">
-        <SubtitleComponent text={data.info_resenas}
-                           align="center"
-                           color="text-gris" />
-    </div>
-    <div class="grid grid-cols-3 w-90 h-40 gap-5">
-        <div class="">
-            <div class="rounded-full bg-gray-300 aspect-square"></div>
-            <div class="text-center">Michella K.</div>
-        </div>
-        <div class="">
-            <div class="rounded-full bg-gray-300 aspect-square"></div>
-            <div class="text-center">Jessica W.</div>
-        </div>
-        <div class="">
-            <div class="rounded-full bg-gray-300 aspect-square"></div>
-            <div class="text-center">Aliffia A.</div>
-        </div>
+    <div class="grid grid-rows-3 gap-y-5">
+        {review.map((item) => (
+                <ReviewsSmallComponent
+                        image={`${STRAPI_BASE_URL}${item.image.url}`}
+                        title={item.nombre}
+                        description={item.info}
+                />
+        ))}
     </div>
 </div>

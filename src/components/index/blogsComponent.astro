@@ -3,7 +3,7 @@
 import SubtitleComponent from "../misc/subtitleComponent.astro";
 import TitleComponent from "../misc/titleComponent.astro";
 import SmallTitleComponent from "../misc/smallTitleComponent.astro";
-import {fetchFromAPI} from "../../lib/conection";
+import {fetchFromAPI, STRAPI_BASE_URL} from "../../lib/conection";
 import BlogsSmallComponent from "./blogsSmallComponent.astro";
 import BlogsBigComponent from "./blogsBigComponent.astro";
 
@@ -23,7 +23,8 @@ const bigData = blogs[0];
 const smallData = blogs.slice(1, 4);
 ---
 
-<div class="items-center flex flex-col">
+<div class="my-10">
+<div class="items-center flex flex-col gap-y-5">
     <SmallTitleComponent text={data.smallTitle_blog} />
     <TitleComponent text={data.title_blog} color="secondary" align="center" size="big" />
     <SubtitleComponent text={data.info_blog}
@@ -33,6 +34,7 @@ const smallData = blogs.slice(1, 4);
 <div class="grid grid-cols-[35%_65%] my-10">
 <BlogsBigComponent
         date={bigData.smalTitle}
+        image={`${STRAPI_BASE_URL}${bigData.image.url}`}
         title={bigData.title}
         description={bigData.info}
         button={bigData.name}
@@ -43,10 +45,12 @@ const smallData = blogs.slice(1, 4);
     {smallData.map((item) => (
             <BlogsSmallComponent
                     date={item.smalTitle}
+                    image={`${STRAPI_BASE_URL}${item.image.url}`}
                     title={item.title}
                     description={item.info}
                     button={item.name}
                     link=`/blogs/${item.documentId}`
             />
     ))}
+</div>
 </div>

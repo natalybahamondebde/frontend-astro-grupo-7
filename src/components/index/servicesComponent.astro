@@ -4,39 +4,15 @@ import EventCard from "../eventCard.astro";
 import SubtitleComponent from "../misc/subtitleComponent.astro";
 import TitleComponent from "../misc/titleComponent.astro";
 import SmallTitleComponent from "../misc/smallTitleComponent.astro";
-const servicio1 = [
-    { icon: "🎉", label: "Guest Seating" },
-    { icon: "🎉", label: "Guest Seating" },
-    { icon: "🎉", label: "Guest Seating" },
-    { icon: "🎉", label: "Guest Seating" },
-    { icon: "🎉", label: "Guest Seating" },
-    { icon: "🎉", label: "Guest Seating" },
-];
 
-const servicio2 = [
-    { icon: "🎉", label: "Guest Seating" },
-    { icon: "🎉", label: "Guest Seating" },
-    { icon: "🎉", label: "Guest Seating" },
-    { icon: "🎉", label: "Guest Seating" },
-    { icon: "🎉", label: "Guest Seating" },
-    { icon: "🎉", label: "Guest Seating" },
-];
 
-const servicio3 = [
-    { icon: "🎉", label: "Guest Seating" },
-    { icon: "🎉", label: "Guest Seating" },
-    { icon: "🎉", label: "Guest Seating" },
-    { icon: "🎉", label: "Guest Seating" },
-    { icon: "🎉", label: "Guest Seating" },
-    { icon: "🎉", label: "Guest Seating" },
-];
-
-import {fetchFromAPI} from "../../lib/conection";
+import {fetchFromAPI, STRAPI_BASE_URL} from "../../lib/conection";
 const data = await fetchFromAPI('home');
+const servicio = await fetchFromAPI('servicios');
 ---
 
 <div class="grid grid-rows-[30%_70%] my-20">
-    <div class="items-center flex flex-col">
+    <div class="items-center flex flex-col gap-y-5">
         <SmallTitleComponent text={data.smallTitle_servicio} />
         <TitleComponent text={data.title_servicio}
                         color="secondary"
@@ -47,19 +23,13 @@ const data = await fetchFromAPI('home');
                            align="center" />
     </div>
     <div class="grid lg:grid-cols-3 md:grid-cols-1 gap-6 p-6">
-        <EventCard
-                title="Other Event"
-                features={servicio1}
-        />
-
-        <EventCard
-                title="Wedding"
-                features={servicio2}
-        />
-
-        <EventCard
-                title="Birthday Party"
-                features={servicio3}
-        />
+        {servicio.map((item) => (
+                <EventCard
+                        title={item.title}
+                        image={`${STRAPI_BASE_URL}${item.banner.url}`}
+                        button={item.button}
+                        link={item.url}
+                />
+        ))}
     </div>
 </div>

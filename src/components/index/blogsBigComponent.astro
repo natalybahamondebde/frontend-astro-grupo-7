@@ -5,20 +5,13 @@ import SubtitleComponent from "../misc/subtitleComponent.astro";
 import SquareImageComponent from "../misc/squareImageComponent.astro";
 import LinkComponent from "../misc/linkComponent.astro";
 
-interface Props {
-    image: string;
-    date: string;
-    title: string;
-    description: string;
-    link: string;
-    button: string;
-}
-const { date = "default_date", title = "default_title", description = "default_desc", button, link } = Astro.props;
+
+const { date = "default_date", title = "default_title", description = "default_desc", button, link, image } = Astro.props;
 ---
 
 
-    <div class="h-100">
-        <SquareImageComponent />
+    <div class="h-110">
+        <SquareImageComponent image={image} />
     </div>
     <div class="mx-10 flex flex-col justify-center gap-y-5">
         <SubtitleComponent text={date}
@@ -27,7 +20,7 @@ const { date = "default_date", title = "default_title", description = "default_d
         <TitleComponent text={title}
                         color="secondary"
                         size="big" />
-        <SubtitleComponent text={description}
+        <SubtitleComponent text={description.slice(0,190)}
                            color="text-gris"
                            align="left" />
         <LinkComponent link={link}>

@@ -20,9 +20,11 @@ const data = await fetchFromAPI('home');
                            align="center"/>
     </div>
     <div class="flex gap-5 flex-row">
+        <a href={data.url_1}>
         <PrimaryButtonComponent text={data.button_1}
-                                color="primary" />
+                                color="primary" /></a>
+        <a href={data.url}>
         <PrimaryButtonComponent text={data.name}
-                                color="secondary" />
+                                color="secondary" /></a>
     </div>
 </BannerComponent>

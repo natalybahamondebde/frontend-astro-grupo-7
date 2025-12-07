@@ -1,14 +1,16 @@
 ---
 import LineComponent from "../misc/lineComponent.astro";
+import LogoComponent from "../misc/logoComponent.astro";
+import {fetchFromAPI} from "../../lib/conection";
+
+const data = await fetchFromAPI('navards');
 ---
 
 <div class="z-50 fixed grid grid-cols-[15%_70%_15%] px-5 bg-brand-white w-full h-20">
-    <div class="flex items-center justify-start">LOGO</div>
+    <div class="flex items-center justify-start"><LogoComponent /></div>
     <ul class="flex flex-row w-full h-full items-center text-black gap-7 font-body text-center justify-center">
-        <li class="group cursor-pointer"><a href="/">INICIO<LineComponent /></a></li>
-        <li class="group cursor-pointer"><a href="/menu">MENU<LineComponent /></a></li>
-        <li class="group cursor-pointer"><a href="/services">SERVICIOS<LineComponent /></a></li>
-        <li class="group cursor-pointer"><a href="/about">NOSOTROS<LineComponent /></a></li>
+        {data.map((item) => (
+        <li class="group cursor-pointer"><a href={item.url}>{item.name}<LineComponent /></a></li>
+        ))}
     </ul>
-    <div class="flex items-center font-body justify-end">LLAMA +9 56649674</div>
 </div>
