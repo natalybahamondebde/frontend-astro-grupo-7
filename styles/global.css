@@ -1,4 +1,3 @@
-@import '@fontsource/new-tegomin';
 @import '@fontsource-variable/lora';
 @import "tailwindcss";
 @tailwind utilities;
@@ -6,7 +5,6 @@
 
 @theme {
     --font-body: 'Lora Variable', serif;
-    --font-title: 'New Tegomin', serif;
     --color-secondary: rgb(255, 241, 223);
     --color-primary: rgb(255, 247, 237);
     --color-button: rgb(179, 116, 40);
